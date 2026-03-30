@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mithila Design — Art in Every Thread</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --terra:#B5451B; --terra-d:#8C3212; --terra-l:#F0A882; --terra-p:#FBE9DC;
+    --indigo:#1E2D5A; --indigo-l:#2C4080;
+    --mustard:#C8870A; --mustard-l:#F2B930;
+    --cream:#FAF6EE; --off:#F4EDE1; --dark:#160F06;
+    --mid:#5C4A38; --light:#9C866E; --border:rgba(181,69,27,.14);
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden}
+  img{display:block;max-width:100%}
+  a{text-decoration:none;color:inherit}
+  button{cursor:pointer;border:none;font-family:inherit}
+
+  /* ── TOP BAR ── */
+  .topbar{background:var(--indigo);height:36px;overflow:hidden;display:flex;align-items:center}
+  .topbar-track{display:flex;animation:marquee 30s linear infinite;width:max-content}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .ti{white-space:nowrap;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:500;padding:0 32px;color:rgba(255,255,255,.86)}
+  .ti span{color:var(--mustard-l)} .ts{color:rgba(255,255,255,.28);padding:0 4px}
+
+  /* ── NAV ── */
+  .nav-wrap{position:sticky;top:0;z-index:200;background:var(--cream);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+  .nav-wrap.up{box-shadow:0 2px 24px rgba(22,15,6,.08)}
+  nav{max-width:1440px;margin:0 auto;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;gap:20px}
+  .logo-n{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--indigo);line-height:1}
+  .logo-s{font-size:8.5px;letter-spacing:4px;text-transform:uppercase;color:var(--terra);font-weight:600;margin-top:3px}
+  .nav-links{display:flex;gap:24px;list-style:none;align-items:center}
+  .nav-links a{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;color:var(--dark);position:relative;padding-bottom:3px;transition:color .2s}
+  .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--terra);transition:width .3s}
+  .nav-links a:hover{color:var(--terra)} .nav-links a:hover::after{width:100%}
+  .nav-icons{display:flex;align-items:center;gap:3px;flex-shrink:0}
+  .nic{background:none;padding:8px 9px;font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;color:var(--dark);transition:color .2s;display:flex;align-items:center;gap:5px}
+  .nic svg{width:17px;height:17px;stroke-width:1.5} .nic:hover{color:var(--terra)}
+  .ncart{background:var(--terra)!important;color:#fff!important;padding:8px 18px!important;border-radius:2px;font-size:11px!important;letter-spacing:2px!important;transition:background .25s!important}
+  .ncart:hover{background:var(--indigo)!important}
+
+  /* ── HERO SLIDER ── */
+  .hero{position:relative;overflow:hidden;height:calc(100vh - 104px);min-height:520px;max-height:820px}
+  .hslides{display:flex;width:300%;height:100%;transition:transform .78s cubic-bezier(.77,0,.18,1)}
+  .hslide{width:33.333%;height:100%;display:flex;align-items:stretch}
+  .sl{flex:1;display:flex;flex-direction:column;justify-content:center;padding:56px 64px;position:relative;z-index:2}
+  .sr{width:48%;flex-shrink:0;position:relative;overflow:hidden}
+  .sr img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform 8s ease}
+  .hslide:hover .sr img{transform:scale(1.04)}
+  .s1 .sl,.s1{background:var(--off)}
+  .s2 .sl,.s2{background:var(--indigo)}
+  .s3 .sl,.s3{background:#26140A}
+  .sborder{width:4px;flex-shrink:0;background:repeating-linear-gradient(to bottom,var(--mustard) 0,var(--mustard) 8px,transparent 8px,transparent 16px);opacity:.55}
+  .sey{font-size:10px;letter-spacing:5px;text-transform:uppercase;font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:13px}
+  .sey::before{content:'';width:28px;height:1.5px;background:currentColor}
+  .s1 .sey{color:var(--terra)} .s2 .sey{color:var(--mustard-l)} .s3 .sey{color:var(--terra-l)}
+  .stitle{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,4.3vw,68px);font-weight:300;line-height:1.1;margin-bottom:18px}
+  .s1 .stitle{color:var(--dark)} .s2 .stitle,.s3 .stitle{color:#fff}
+  .stitle em{font-style:italic}
+  .s1 .stitle em{color:var(--terra)} .s2 .stitle em{color:var(--mustard-l)} .s3 .stitle em{color:var(--terra-l)}
+  .sdesc{font-size:14.5px;line-height:1.82;max-width:370px;margin-bottom:34px}
+  .s1 .sdesc{color:var(--mid)} .s2 .sdesc,.s3 .sdesc{color:rgba(255,255,255,.62)}
+  .scta{display:flex;gap:13px;flex-wrap:wrap;align-items:center}
+  .bs{padding:13px 33px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;border-radius:2px;transition:all .25s;display:inline-block}
+  .bg{padding:13px 33px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;border-radius:2px;transition:all .25s;display:inline-block;background:transparent}
+  .s1 .bs{background:var(--terra);color:#fff} .s1 .bs:hover{background:var(--indigo)}
+  .s2 .bs{background:var(--mustard);color:var(--dark)} .s2 .bs:hover{background:var(--mustard-l)}
+  .s3 .bs{background:var(--terra);color:#fff} .s3 .bs:hover{background:var(--terra-l);color:var(--dark)}
+  .s1 .bg{border:1.5px solid var(--terra);color:var(--terra)} .s1 .bg:hover{background:var(--terra);color:#fff}
+  .s2 .bg{border:1.5px solid rgba(255,255,255,.38);color:#fff} .s2 .bg:hover{background:rgba(255,255,255,.09)}
+  .s3 .bg{border:1.5px solid rgba(255,255,255,.32);color:#fff} .s3 .bg:hover{background:rgba(255,255,255,.07)}
+  .sbadge{position:absolute;bottom:24px;left:24px;background:rgba(250,246,238,.95);padding:11px 15px;backdrop-filter:blur(8px);border-left:3px solid var(--terra);z-index:3}
+  .sb-c{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:3px}
+  .sb-n{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--dark)}
+  .sb-p{font-size:13px;color:var(--indigo);font-weight:600;margin-top:2px}
+  .hdots{position:absolute;bottom:28px;left:64px;display:flex;gap:12px;z-index:10}
+  .hdot{width:24px;height:2.5px;background:rgba(22,15,6,.2);border-radius:2px;cursor:pointer;transition:all .3s}
+  .hdot.active{background:var(--terra);width:48px}
+  .harrows{position:absolute;right:28px;bottom:28px;display:flex;gap:9px;z-index:10}
+  .harr{width:40px;height:40px;border:1.5px solid rgba(22,15,6,.2);background:rgba(250,246,238,.82);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:all .2s;backdrop-filter:blur(4px)}
+  .harr:hover{background:var(--terra);border-color:var(--terra);color:#fff}
+
+  /* ── CATEGORY ROW ── */
+  .catrow{background:#fff;border-bottom:1px solid var(--border);padding:0 48px;overflow-x:auto}
+  .catrow::-webkit-scrollbar{display:none}
+  .catinner{max-width:1344px;margin:0 auto;display:flex;align-items:stretch; justify-content: center; gap:20px;}
+  .cati{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:14px 24px;cursor:pointer;border-bottom:2.5px solid transparent;transition:all .22s;white-space:nowrap}
+  .cati:hover,.cati.active{border-bottom-color:var(--terra)}
+  .caticon{width:44px;height:44px;border-radius:50%;background:var(--off);display:flex;align-items:center;justify-content:center;font-size:18px;transition:all .22s}
+  .cati:hover .caticon,.cati.active .caticon{background:var(--terra-p)}
+  .catlbl{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;color:var(--mid)}
+
+  /* ── SECTION BASE ── */
+  .sw{padding:64px 48px} .sw-w{background:#fff} .sw-o{background:var(--off)} .sw-c{background:var(--cream)}
+  .sm{max-width:1344px;margin:0 auto}
+  .sh{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px}
+  .ssub{font-size:10px;letter-spacing:4.5px;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:8px}
+  .stit{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,2.9vw,42px);font-weight:300;line-height:1.15;color:var(--dark)}
+  .stit em{font-style:italic;color:var(--indigo)}
+  .slink{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--terra);border-bottom:1.5px solid var(--terra);padding-bottom:2px;transition:all .2s;white-space:nowrap;margin-bottom:5px}
+  .slink::after{content:' →'} .slink:hover{color:var(--indigo);border-color:var(--indigo)}
+
+  /* ── BENTO COLLECTIONS ── */
+  .bento{display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:360px 240px;gap:11px}
+  .bc{position:relative;overflow:hidden;cursor:pointer;border-radius:2px}
+  .bc:first-child{grid-row:1/3}
+  .bc img{width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(.25,.46,.45,.94)}
+  .bc:hover img{transform:scale(1.07)}
+  .bov{position:absolute;inset:0;background:linear-gradient(to top,rgba(22,15,6,.72) 0%,rgba(22,15,6,.06) 55%,transparent 100%)}
+  .bcon{position:absolute;bottom:0;left:0;right:0;padding:20px 24px;transition:padding .3s}
+  .bc:hover .bcon{padding-bottom:28px}
+  .bey{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.6);font-weight:600;margin-bottom:5px}
+  .bnam{font-family:'Cormorant Garamond',serif;color:#fff;font-size:22px;font-weight:400;line-height:1.2;margin-bottom:10px}
+  .bc:first-child .bnam{font-size:32px}
+  .bbtn{display:inline-block;background:rgba(255,255,255,.13);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.36);color:#fff;padding:7px 17px;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;font-weight:600;border-radius:2px;opacity:0;transform:translateY(6px);transition:all .3s}
+  .bc:hover .bbtn{opacity:1;transform:translateY(0)}
+
+  /* ── PRODUCT GRID ── */
+  .pg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .pc{background:#fff;border-radius:2px;overflow:hidden;cursor:pointer;transition:box-shadow .3s}
+  .pc:hover{box-shadow:0 8px 36px rgba(22,15,6,.1)}
+  .pi{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--off)}
+  .pi img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease}
+  .pc:hover .pi img{transform:scale(1.05)}
+  .ptw{position:absolute;top:10px;left:10px;display:flex;flex-direction:column;gap:5px;z-index:2}
+  .pt{font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;padding:3px 8px;border-radius:2px}
+  .ptb{background:var(--terra);color:#fff} .ptn{background:var(--indigo);color:#fff} .pts{background:var(--mustard);color:var(--dark)}
+  .pw{position:absolute;top:10px;right:10px;width:30px;height:30px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;opacity:0;transition:opacity .25s;z-index:2;border:none;cursor:pointer}
+  .pc:hover .pw{opacity:1}
+  .pq{position:absolute;bottom:0;left:0;right:0;background:rgba(30,45,90,.92);color:#fff;text-align:center;padding:10px;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:600;transform:translateY(100%);transition:transform .3s;z-index:2}
+  .pc:hover .pq{transform:translateY(0)}
+  .pinfo{padding:13px 15px 17px}
+  .pcr{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:5px}
+  .pna{font-family:'Cormorant Garamond',serif;font-size:16.5px;font-weight:600;color:var(--dark);line-height:1.3;margin-bottom:3px}
+  .pmt{font-size:11.5px;color:var(--light);margin-bottom:8px}
+  .ppr{display:flex;align-items:center;gap:7px}
+  .pcu{font-size:15.5px;font-weight:600;color:var(--indigo);font-family:'Cormorant Garamond',serif}
+  .pol{font-size:12.5px;color:var(--light);text-decoration:line-through}
+  .pof{font-size:9px;font-weight:700;background:var(--terra-p);color:var(--terra);padding:2px 6px;border-radius:2px}
+
+  /* ── STORY SPLIT ── */
+  .ssplit{display:grid;grid-template-columns:1fr 1fr;min-height:520px}
+  .sic{position:relative;overflow:hidden}
+  .sic img{width:100%;height:100%;object-fit:cover}
+  .sicov{position:absolute;inset:0;background:linear-gradient(to right,rgba(30,45,90,.28) 0%,transparent 60%)}
+  .stcol{background:var(--terra-p);padding:72px 60px;display:flex;flex-direction:column;justify-content:center}
+  .sbody{font-size:14.5px;line-height:1.85;color:rgba(22,15,6,.74);margin-bottom:16px}
+  .sstats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:26px 0}
+  .sst{border-left:3px solid var(--terra);padding-left:12px}
+  .snu{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--terra);line-height:1}
+  .slb{font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);font-weight:600;margin-top:3px}
+
+  /* ── PROCESS ── */
+  .procbg{background:var(--indigo);padding:56px 48px;position:relative;overflow:hidden}
+  .procbg::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='40' r='22' fill='none' stroke='%23F2B930' stroke-width='0.5' opacity='0.08'/%3E%3Ccircle cx='40' cy='40' r='14' fill='none' stroke='%23F2B930' stroke-width='0.4' opacity='0.06'/%3E%3C/svg%3E")}
+  .procin{max-width:1344px;margin:0 auto;position:relative;z-index:1}
+  .procg{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:40px}
+  .prst{padding:24px 28px 24px 0;border-right:1px solid rgba(255,255,255,.09)}
+  .prst:last-child{border-right:none} .prst+.prst{padding-left:28px}
+  .prnum{font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:300;color:rgba(242,185,48,.16);line-height:1;margin-bottom:11px}
+  .pricon{font-size:23px;margin-bottom:9px;display:block}
+  .prtit{font-family:'Cormorant Garamond',serif;font-size:18px;color:#fff;font-weight:400;margin-bottom:7px}
+  .prdesc{font-size:12.5px;color:rgba(255,255,255,.47);line-height:1.7}
+
+  /* ── TESTIMONIALS ── */
+  .tg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+  .tc{background:#fff;padding:28px 24px;border-top:3px solid var(--terra);box-shadow:0 2px 14px rgba(22,15,6,.05)}
+  .tst{color:var(--mustard);font-size:13px;letter-spacing:2.5px;margin-bottom:13px}
+  .ttxt{font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;line-height:1.65;color:var(--dark);margin-bottom:18px}
+  .tau{display:flex;align-items:center;gap:10px}
+  .tav{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+  .tna{font-size:12.5px;font-weight:600;color:var(--dark)} .tlo{font-size:11px;color:var(--light)}
+
+  /* ── INSTAGRAM ── */
+  .igrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:28px}
+  .iitem{aspect-ratio:1;overflow:hidden;cursor:pointer;position:relative;border-radius:2px}
+  .iitem img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease;filter:saturate(.9)}
+  .iitem:hover img{transform:scale(1.07);filter:saturate(1)}
+  .iov{position:absolute;inset:0;background:rgba(30,45,90,.52);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;color:#fff;font-size:20px}
+  .iitem:hover .iov{opacity:1}
+
+  /* ── NEWSLETTER ── */
+  .nl{background:var(--dark);padding:64px 48px;display:grid;grid-template-columns:1.2fr 1fr;gap:72px;align-items:center;position:relative;overflow:hidden}
+  .nl::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='32' fill='none' stroke='%23B5451B' stroke-width='0.6' opacity='0.1'/%3E%3Ccircle cx='60' cy='60' r='20' fill='none' stroke='%23B5451B' stroke-width='0.5' opacity='0.07'/%3E%3C/svg%3E")}
+  .nlc{position:relative;z-index:1}
+  .nlc .ssub{color:var(--mustard-l)} .nlc .stit{color:#fff;margin-bottom:12px}
+  .nld{font-size:14px;color:rgba(255,255,255,.53);line-height:1.75}
+  .nlf{position:relative;z-index:1}
+  .nlq{font-family:'Cormorant Garamond',serif;font-size:17.5px;color:rgba(255,255,255,.7);margin-bottom:20px;line-height:1.5}
+  .nlr{display:flex;gap:0;margin-bottom:10px}
+  .nli{flex:1;padding:13px 17px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-right:none;color:#fff;font-family:'Jost',sans-serif;font-size:14px;outline:none;border-radius:2px 0 0 2px}
+  .nli::placeholder{color:rgba(255,255,255,.35)}
+  .nlb{background:var(--terra);color:#fff;padding:13px 22px;font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:600;transition:background .22s;border-radius:0 2px 2px 0}
+  .nlb:hover{background:var(--mustard);color:var(--dark)}
+  .nln{font-size:11px;color:rgba(255,255,255,.32)}
+
+  /* ── FOOTER ── */
+  footer{background:#100A03;padding:56px 48px 26px}
+  .ftop{max-width:1344px;margin:0 auto 44px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.07)}
+  .fabt{font-size:12.5px;color:rgba(255,255,255,.4);line-height:1.75;margin:14px 0 20px}
+  .fsoc{display:flex;gap:8px}
+  .fsb{width:33px;height:33px;border:1px solid rgba(255,255,255,.17);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;background:none;color:rgba(255,255,255,.5);transition:all .2s}
+  .fsb:hover{border-color:var(--terra);color:var(--terra-l)}
+  .fcol h4{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.8);font-weight:600;margin-bottom:17px}
+  .fcol ul{list-style:none}
+  .fcol ul li{margin-bottom:8px}
+  .fcol ul li a{font-size:12.5px;color:rgba(255,255,255,.4);transition:color .2s}
+  .fcol ul li a:hover{color:var(--terra-l)}
+  .fbot{max-width:1344px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+  .fcp{font-size:11.5px;color:rgba(255,255,255,.26)}
+  .fbl{display:flex;gap:20px}
+  .fbl a{font-size:11.5px;color:rgba(255,255,255,.26);transition:color .2s}
+  .fbl a:hover{color:rgba(255,255,255,.5)}
+
+  /* ── MARQUEE STRIP ── */
+  .ms{overflow:hidden;padding:11px 0}
+  .mt{display:flex;animation:marquee 20s linear infinite;width:max-content}
+  .mi{white-space:nowrap;font-size:10.5px;letter-spacing:3px;text-transform:uppercase;padding:0 26px;font-weight:500}
+
+  /* ── REVEAL ── */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  @keyframes hfade{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+  .sl>*:nth-child(1){animation:hfade .8s .1s ease both}
+  .sl>*:nth-child(2){animation:hfade .8s .22s ease both}
+  .sl>*:nth-child(3){animation:hfade .8s .34s ease both}
+  .sl>*:nth-child(4){animation:hfade .8s .46s ease both}
+
+  @media(max-width:1100px){
+    nav{padding:0 22px} .nav-links{display:none}
+    .sw{padding:44px 22px} .pg{grid-template-columns:repeat(2,1fr)}
+    .bento{grid-template-columns:1fr 1fr;grid-template-rows:auto} .bc:first-child{grid-row:auto}
+    .ssplit{grid-template-columns:1fr} .procg{grid-template-columns:1fr 1fr}
+    .tg{grid-template-columns:1fr} .nl{grid-template-columns:1fr;gap:32px}
+    .ftop{grid-template-columns:1fr 1fr;gap:28px} .igrid{grid-template-columns:repeat(3,1fr)}
+    .fbot{flex-direction:column;gap:10px;text-align:center}
+    .hslide{flex-direction:column} .sr{width:100%;height:42vh} .sl{padding:32px 24px}
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-track">
+    <span class="ti">Free shipping above ₹2,500</span><span class="ts">◈</span>
+    <span class="ti"><span>New:</span> Monsoon Mithila 2025</span><span class="ts">◈</span>
+    <span class="ti">200+ Women Artisans from Bihar</span><span class="ts">◈</span>
+    <span class="ti">Code <span>MITHILA10</span> — 10% off first order</span><span class="ts">◈</span>
+    <span class="ti">Free shipping above ₹2,500</span><span class="ts">◈</span>
+    <span class="ti"><span>New:</span> Monsoon Mithila 2025</span><span class="ts">◈</span>
+    <span class="ti">200+ Women Artisans from Bihar</span><span class="ts">◈</span>
+    <span class="ti">Code <span>MITHILA10</span> — 10% off first order</span><span class="ts">◈</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap" id="nav">
+  <nav>
+    <div><div class="logo-n">Mithila Design</div><div class="logo-s">Art in Every Thread</div></div>
+    <ul class="nav-links">
+      <li><a href="#">Sarees</a></li><li><a href="#">Kurtis</a></li>
+      <li><a href="#">Dresses</a></li><li><a href="#">Collections</a></li>
+      <li><a href="#">Sale</a></li><li><a href="#">Our Story</a></li>
+    </ul>
+    <div class="nav-icons">
+      <button class="nic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg></button>
+      <button class="nic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+      <button class="nic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+      <button class="nic ncart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="width:14px;height:14px"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Cart (0)</button>
+    </div>
+  </nav>
+</div>
+
+<!-- HERO SLIDER -->
+<section class="hero" id="hero">
+  <div class="hslides" id="hslides">
+
+    <!-- SLIDE 1 — Saree — SOBHAN Chanderi -->
+    <div class="hslide s1">
+      <div class="sl">
+        <div class="sey">New Collection · Monsoon 2025</div>
+        <h1 class="stitle">The Art of<br><em>Mithila</em><br>on Silk</h1>
+        <p class="sdesc">Hand-painted by master artisans of Madhubani — each saree tells a sacred story drawn from nature, mythology and the soul of Bihar.</p>
+        <div class="scta"><a href="#" class="bs">Shop Sarees</a><a href="#" class="bg">View Lookbook</a></div>
+      </div>
+      <div class="sborder"></div>
+      <div class="sr">
+        <img
+          src="https://www.madhubanipaints.com/cdn/shop/files/photo-output78_copy_3000x4500_f359833d-b3c4-4f68-a478-8080dcbe304e_1500x.jpg?v=1691843764"
+          alt="SOBHAN Handpainted Madhubani Chanderi Saree"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=900&q=85'">
+        <div class="sbadge">
+          <div class="sb-c">Chanderi Silk · Saree</div>
+          <div class="sb-n">SOBHAN Chanderi Saree</div>
+          <div class="sb-p">₹7,900</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 — Kurti — Black Phool Bharni -->
+    <div class="hslide s2">
+      <div class="sl">
+        <div class="sey">Daily Elegance</div>
+        <h1 class="stitle">Wear a<br><em>Living</em><br>Canvas</h1>
+        <p class="sdesc">Contemporary kurtis adorned with centuries-old Madhubani motifs — peacocks, lotuses, fish — painted on the finest handloom cotton and silk.</p>
+        <div class="scta"><a href="#" class="bs">Shop Kurtis</a><a href="#" class="bg">Meet Artisans</a></div>
+      </div>
+      <div class="sborder"></div>
+      <div class="sr">
+        <img
+          src="https://www.madhubanipaints.com/cdn/shop/files/rn-image_picker_lib_temp_d0a0cc0c-1788-4dd7-9359-12728b40f8d4_1500x.jpg?v=1695177289"
+          alt="Black Phool Bharni Handpainted Tussar Silk Kurta Set"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=900&q=85'">
+        <div class="sbadge">
+          <div class="sb-c">Tussar Silk · Kurti Set</div>
+          <div class="sb-n">Black Phool Bharni Kurti</div>
+          <div class="sb-p">₹10,500</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 — Dress — RAMAYANAM Saree -->
+    <div class="hslide s3">
+      <div class="sl">
+        <div class="sey">Heritage Collection</div>
+        <h1 class="stitle">Tradition<br>Meets <em>Modern</em><br>Grace</h1>
+        <p class="sdesc">Where ancient art breathes new life — our Ramayanam collection blends sacred Mithila stories with the finest Tussar silk for the modern woman.</p>
+        <div class="scta"><a href="#" class="bs">Explore Now</a><a href="#" class="bg">New Arrivals</a></div>
+      </div>
+      <div class="sborder"></div>
+      <div class="sr">
+        <img
+          src="https://www.madhubanipaints.com/cdn/shop/products/InShot_20230102_145110733_copy_1024x1536_28e6d712-04ad-4102-91b2-ed3363a32467_1500x.jpg?v=1679148267"
+          alt="RAMAYANAM Handpainted Tussar Silk Saree"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=900&q=85'">
+        <div class="sbadge">
+          <div class="sb-c">Tussar Silk · Heritage</div>
+          <div class="sb-n">RAMAYANAM Silk Saree</div>
+          <div class="sb-p">₹14,900</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="hdots" id="hdots">
+    <div class="hdot active" data-i="0"></div>
+    <div class="hdot" data-i="1"></div>
+    <div class="hdot" data-i="2"></div>
+  </div>
+  <div class="harrows">
+    <div class="harr" id="hprev">←</div>
+    <div class="harr" id="hnext">→</div>
+  </div>
+</section>
+
+<!-- CATEGORY ROW -->
+<div class="catrow">
+  <div class="catinner">
+    <div class="cati active"><div class="caticon">🥻</div><span class="catlbl">Sarees</span></div>
+    <div class="cati"><div class="caticon">👘</div><span class="catlbl">Kurtis</span></div>
+    <div class="cati"><div class="caticon">👗</div><span class="catlbl">Dresses</span></div>
+    <div class="cati"><div class="caticon">✨</div><span class="catlbl">Festive</span></div>
+    <div class="cati"><div class="caticon">💍</div><span class="catlbl">Wedding</span></div>
+    <div class="cati"><div class="caticon">🌿</div><span class="catlbl">Silk</span></div>
+    <div class="cati"><div class="caticon">🎨</div><span class="catlbl">Art Motif</span></div>
+    <div class="cati"><div class="caticon">🎁</div><span class="catlbl">Gift Sets</span></div>
+  </div>
+</div>
+
+<!-- COLLECTIONS BENTO -->
+<div class="sw sw-c reveal">
+  <div class="sm">
+    <div class="sh">
+      <div><div class="ssub">Curated Collections</div><h2 class="stit">Shop by <em>Category</em></h2></div>
+      <a href="#" class="slink">View All</a>
+    </div>
+    <div class="bento">
+
+      <!-- Large — Saree — GAUNA IN MITHILA -->
+      <div class="bc">
+        <img
+          src="https://www.madhubanipaints.com/cdn/shop/files/photo-output3-1_copy_3000x4500_33b0fb29-1b4c-44ca-9abf-7224214b1f73_1500x.jpg?v=1691840772"
+          alt="GAUNA IN MITHILA Handpainted Chanderi Saree"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1609237723095-7e5d62ee0be9?w=900&q=85'">
+        <div class="bov"></div>
+        <div class="bcon">
+          <div class="bey">Heritage Collection</div>
+          <div class="bnam">The Saree Edit<br><span style="font-size:15px;opacity:.7">150+ Styles</span></div>
+          <a href="#" class="bbtn">Explore Sarees</a>
+        </div>
+      </div>
+
+      <!-- Kurti — Gajanand Mayur Tussar -->
+      <div class="bc">
+        <img
+          src="https://www.madhubanipaints.com/cdn/shop/products/MPOKH0000079_1_1500x.jpg?v=1679150206"
+          alt="Gajanand Mayur Handpainted Madhubani Tussar Silk Kurta"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=600&q=85'">
+        <div class="bov"></div>
+        <div class="bcon">
+          <div class="bey">Daily Elegance</div>
+          <div class="bnam">Kurti Stories</div>
+          <a href="#" class="bbtn">Shop Kurtis</a>
+        </div>
+      </div>
+
+      <!-- Dress — SOBHAN alt -->
+      <div class="bc">
+        <img
+          src="https://www.madhubanipaints.com/cdn/shop/files/photo-output79_copy_3000x4500_c590d75c-3b05-4678-9591-3f8da7d8a1f8_1500x.jpg?v=1691843764"
+          alt="Handpainted Madhubani Chanderi Saree"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=600&q=85'">
+        <div class="bov"></div>
+        <div class="bcon">
+          <div class="bey">Modern Mithila</div>
+          <div class="bnam">Contemporary Dresses</div>
+          <a href="#" class="bbtn">Shop Dresses</a>
+        </div>
+      </div>
+
+      <!-- New Arrivals — decorative -->
+      <div class="bc" style="background:var(--indigo);overflow:hidden;position:relative;">
+        <div style="position:absolute;inset:0;background-image:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22 viewBox=%220 0 80 80%22%3E%3Ccircle cx=%2240%22 cy=%2240%22 r=%2222%22 fill=%22none%22 stroke=%22%23F2B930%22 stroke-width=%220.7%22 opacity=%220.18%22/%3E%3Ccircle cx=%2240%22 cy=%2240%22 r=%2214%22 fill=%22none%22 stroke=%22%23F2B930%22 stroke-width=%220.5%22 opacity=%220.12%22/%3E%3C/svg%3E');"></div>
+        <div class="bov" style="background:linear-gradient(to top,rgba(30,45,90,.85) 0%,rgba(30,45,90,.3) 100%);"></div>
+        <div class="bcon">
+          <div class="bey" style="color:var(--mustard-l);">Just Arrived</div>
+          <div class="bnam">New Season<br>Silk Kurtis</div>
+          <a href="#" class="bbtn">Shop Now</a>
+        </div>
+      </div>
+
+      <!-- Gift card — decorative -->
+      <div class="bc" style="background:var(--terra-p);overflow:hidden;position:relative;">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:24px;">
+          <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><circle cx="26" cy="26" r="17" fill="none" stroke="#B5451B" stroke-width="1.5" opacity="0.38"/><circle cx="26" cy="26" r="10" fill="none" stroke="#B5451B" stroke-width="1" opacity="0.28"/><circle cx="26" cy="26" r="5" fill="#B5451B" opacity="0.32"/><path d="M26 9 L28 18 L26 27 L24 18Z" fill="#B5451B" opacity="0.32"/><path d="M9 26 L18 28 L27 26 L18 24Z" fill="#B5451B" opacity="0.32"/><circle cx="26" cy="9" r="2.5" fill="#B5451B" opacity="0.42"/><circle cx="26" cy="43" r="2.5" fill="#B5451B" opacity="0.42"/><circle cx="9" cy="26" r="2.5" fill="#B5451B" opacity="0.42"/><circle cx="43" cy="26" r="2.5" fill="#B5451B" opacity="0.42"/></svg>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--terra);font-weight:600;text-align:center;line-height:1.3;">Gift a<br>Piece of Art</div>
+          <a href="#" style="font-size:9.5px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--terra);border-bottom:1.5px solid var(--terra);padding-bottom:2px;">Gift Cards →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE STRIP -->
+<div class="ms" style="background:var(--terra);">
+  <div class="mt">
+    <span class="mi" style="color:rgba(255,255,255,.88);">Handpainted Madhubani Motifs</span><span style="color:rgba(255,255,255,.28);padding:0 6px;">◈</span>
+    <span class="mi" style="color:rgba(255,255,255,.88);">Lotus · Fish · Peacock · Radha Krishna</span><span style="color:rgba(255,255,255,.28);padding:0 6px;">◈</span>
+    <span class="mi" style="color:rgba(255,255,255,.88);">100% Handloom Natural Fabrics</span><span style="color:rgba(255,255,255,.28);padding:0 6px;">◈</span>
+    <span class="mi" style="color:rgba(255,255,255,.88);">Made in Bihar with Love</span><span style="color:rgba(255,255,255,.28);padding:0 6px;">◈</span>
+    <span class="mi" style="color:rgba(255,255,255,.88);">Handpainted Madhubani Motifs</span><span style="color:rgba(255,255,255,.28);padding:0 6px;">◈</span>
+    <span class="mi" style="color:rgba(255,255,255,.88);">Lotus · Fish · Peacock · Radha Krishna</span><span style="color:rgba(255,255,255,.28);padding:0 6px;">◈</span>
+    <span class="mi" style="color:rgba(255,255,255,.88);">100% Handloom Natural Fabrics</span><span style="color:rgba(255,255,255,.28);padding:0 6px;">◈</span>
+    <span class="mi" style="color:rgba(255,255,255,.88);">Made in Bihar with Love</span><span style="color:rgba(255,255,255,.28);padding:0 6px;">◈</span>
+  </div>
+</div>
+
+<!-- BESTSELLING SAREES -->
+<div class="sw sw-w reveal">
+  <div class="sm">
+    <div class="sh">
+      <div><div class="ssub">Handpainted Heritage</div><h2 class="stit">Bestselling <em>Sarees</em></h2></div>
+      <a href="#" class="slink">View All Sarees</a>
+    </div>
+    <div class="pg">
+
+      <!-- SOBHAN Chanderi -->
+      <div class="pc">
+        <div class="pi">
+          <img src="https://www.madhubanipaints.com/cdn/shop/files/photo-output78_copy_3000x4500_f359833d-b3c4-4f68-a478-8080dcbe304e_533x.jpg?v=1691843764"
+            alt="SOBHAN Handpainted Madhubani Chanderi Saree"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=480&q=80'">
+          <div class="ptw"><span class="pt ptb">Bestseller</span></div>
+          <button class="pw">♡</button><div class="pq">Quick View</div>
+        </div>
+        <div class="pinfo">
+          <div class="pcr">Chanderi Silk · Madhubani</div>
+          <div class="pna">SOBHAN Chanderi Saree</div>
+          <div class="pmt">Handpainted Chanderi Silk</div>
+          <div class="ppr"><span class="pcu">₹7,900</span></div>
+        </div>
+      </div>
+
+      <!-- RAMAYANAM Tussar -->
+      <div class="pc">
+        <div class="pi">
+          <img src="https://www.madhubanipaints.com/cdn/shop/products/InShot_20230102_145110733_copy_1024x1536_28e6d712-04ad-4102-91b2-ed3363a32467_533x.jpg?v=1679148267"
+            alt="RAMAYANAM Handpainted Tussar Silk Saree"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=480&q=80'">
+          <div class="ptw"><span class="pt ptb">Heritage</span></div>
+          <button class="pw">♡</button><div class="pq">Quick View</div>
+        </div>
+        <div class="pinfo">
+          <div class="pcr">Tussar Silk · Ramayana Art</div>
+          <div class="pna">RAMAYANAM Silk Saree</div>
+          <div class="pmt">Handpainted Tussar Silk</div>
+          <div class="ppr"><span class="pcu">₹14,900</span></div>
+        </div>
+      </div>
+
+      <!-- GAUNA IN MITHILA -->
+      <div class="pc">
+        <div class="pi">
+          <img src="https://www.madhubanipaints.com/cdn/shop/files/photo-output3-1_copy_3000x4500_33b0fb29-1b4c-44ca-9abf-7224214b1f73_533x.jpg?v=1691840772"
+            alt="GAUNA IN MITHILA Handpainted Chanderi Saree"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1609237723095-7e5d62ee0be9?w=480&q=80'">
+          <div class="ptw"><span class="pt ptn">New Arrival</span></div>
+          <button class="pw">♡</button><div class="pq">Quick View</div>
+        </div>
+        <div class="pinfo">
+          <div class="pcr">Chanderi · Mithila Art</div>
+          <div class="pna">GAUNA IN MITHILA Saree</div>
+          <div class="pmt">Handpainted Chanderi Silk</div>
+          <div class="ppr"><span class="pcu">₹7,900</span></div>
+        </div>
+      </div>
+
+      <!-- SOBHAN alt angle -->
+      <div class="pc">
+        <div class="pi">
+          <img src="https://www.madhubanipaints.com/cdn/shop/files/photo-output79_copy_3000x4500_c590d75c-3b05-4678-9591-3f8da7d8a1f8_533x.jpg?v=1691843764"
+            alt="Handpainted Madhubani Saree"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=480&q=80'">
+          <div class="ptw"><span class="pt pts">Sale</span></div>
+          <button class="pw">♡</button><div class="pq">Quick View</div>
+        </div>
+        <div class="pinfo">
+          <div class="pcr">Chanderi Silk · Madhubani</div>
+          <div class="pna">Mithila Floral Saree</div>
+          <div class="pmt">Handpainted Chanderi</div>
+          <div class="ppr"><span class="pcu">₹6,500</span><span class="pol">₹8,500</span><span class="pof">−24%</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- BRAND STORY -->
+<div class="ssplit reveal">
+  <div class="sic">
+    <img
+      src="https://www.madhubanipaints.com/cdn/shop/products/InShot_20230102_144608863_copy_1024x1536_d8d0bc30-45dd-4fad-a65b-6c8d8bffb3ad_1500x.jpg?v=1679148267"
+      alt="RAMAYANAM Handpainted Saree — Mithila artisan detail"
+      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=85'">
+    <div class="sicov"></div>
+  </div>
+  <div class="stcol">
+    <div class="ssub">Our Heritage</div>
+    <h2 class="stit" style="margin-bottom:18px;">Born in Bihar,<br><em>Worn Worldwide</em></h2>
+    <p class="sbody">In the villages of Madhubani, women have painted the walls of their homes with vivid, sacred imagery for over 2,500 years. Mithila Design was founded to bring these ancient brushstrokes onto the finest fabrics.</p>
+    <p class="sbody">We work directly with over 200 master artisans — primarily women — ensuring fair wages, creative ownership, and a living craft tradition passed from mother to daughter.</p>
+    <div class="sstats">
+      <div class="sst"><span class="snu">200+</span><div class="slb">Women Artisans</div></div>
+      <div class="sst"><span class="snu">2,500</span><div class="slb">Years of Heritage</div></div>
+      <div class="sst"><span class="snu">100%</span><div class="slb">Handcrafted</div></div>
+      <div class="sst"><span class="snu">40+</span><div class="slb">Mithila Motifs</div></div>
+    </div>
+    <a href="#" style="display:inline-block;background:var(--terra);color:#fff;padding:13px 33px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;border-radius:2px;transition:background .25s;" onmouseover="this.style.background='#1E2D5A'" onmouseout="this.style.background='#B5451B'">Read Our Story</a>
+  </div>
+</div>
+
+<!-- KURTIS -->
+<div class="sw sw-o reveal">
+  <div class="sm">
+    <div class="sh">
+      <div><div class="ssub">Daily Art</div><h2 class="stit">Madhubani <em>Kurtis</em></h2></div>
+      <a href="#" class="slink">View All Kurtis</a>
+    </div>
+    <div class="pg">
+
+      <!-- Gajanand Mayur Tussar Kurti -->
+      <div class="pc">
+        <div class="pi">
+          <img src="https://www.madhubanipaints.com/cdn/shop/products/MPOKH0000079_1_533x.jpg?v=1679150206"
+            alt="Gajanand Mayur Handpainted Madhubani Tussar Silk Kurta"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=480&q=80'">
+          <div class="ptw"><span class="pt ptb">Bestseller</span></div>
+          <button class="pw">♡</button><div class="pq">Quick View</div>
+        </div>
+        <div class="pinfo">
+          <div class="pcr">Tussar Silk · Madhubani</div>
+          <div class="pna">Gajanand Mayur Kurti</div>
+          <div class="pmt">Handpainted Tussar Silk</div>
+          <div class="ppr"><span class="pcu">₹7,300</span></div>
+        </div>
+      </div>
+
+      <!-- Black Phool Bharni Kurti -->
+      <div class="pc">
+        <div class="pi">
+          <img src="https://www.madhubanipaints.com/cdn/shop/files/rn-image_picker_lib_temp_d0a0cc0c-1788-4dd7-9359-12728b40f8d4_533x.jpg?v=1695177289"
+            alt="Black Phool Bharni Handpainted Tussar Silk Kurta"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=480&q=80'">
+          <div class="ptw"><span class="pt ptn">New Arrival</span></div>
+          <button class="pw">♡</button><div class="pq">Quick View</div>
+        </div>
+        <div class="pinfo">
+          <div class="pcr">Tussar Silk · Phool Bharni</div>
+          <div class="pna">Black Phool Bharni Kurti Set</div>
+          <div class="pmt">Handpainted Tussar Silk · Set</div>
+          <div class="ppr"><span class="pcu">₹10,500</span></div>
+        </div>
+      </div>
+
+      <!-- Anuragini Tussar Kurti -->
+      <div class="pc">
+        <div class="pi">
+          <img src="https://www.madhubanipaints.com/cdn/shop/products/MPOKH0000083_1_533x.jpg?v=1679150190"
+            alt="Anuragini Handpainted Madhubani Tussar Silk Kurta"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=480&q=80'">
+          <div class="ptw"><span class="pt ptb">Artisan Pick</span></div>
+          <button class="pw">♡</button><div class="pq">Quick View</div>
+        </div>
+        <div class="pinfo">
+          <div class="pcr">Tussar Silk · Madhubani</div>
+          <div class="pna">Anuragini Silk Kurti</div>
+          <div class="pmt">Handpainted Tussar Silk</div>
+          <div class="ppr"><span class="pcu">₹7,300</span></div>
+        </div>
+      </div>
+
+      <!-- Multicolour Fish Cotton Kurta -->
+      <div class="pc">
+        <div class="pi">
+          <img src="https://www.madhubanipaints.com/cdn/shop/files/InShot_20230814_201753085_copy_2304x3072_55ba2b8c-0324-40c0-8849-3de19c87fa0c_533x.jpg?v=1692024605"
+            alt="Multicoloured Fish Hand-painted Cotton Kurta"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=480&q=80'">
+          <div class="ptw"><span class="pt pts">Sale</span></div>
+          <button class="pw">♡</button><div class="pq">Quick View</div>
+        </div>
+        <div class="pinfo">
+          <div class="pcr">Cotton · Fish Motif</div>
+          <div class="pna">Multicolour Fish Kurta</div>
+          <div class="pmt">Handloom Cotton · Hand-painted</div>
+          <div class="ppr"><span class="pcu">₹2,900</span><span class="pol">₹3,700</span><span class="pof">−22%</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<div class="procbg reveal">
+  <div class="procin">
+    <div class="ssub" style="color:var(--mustard-l);">The Craft</div>
+    <h2 class="stit" style="color:#fff;">How Every Piece <em style="color:var(--mustard-l);">Comes to Life</em></h2>
+    <div class="procg">
+      <div class="prst"><div class="prnum">01</div><span class="pricon">🌿</span><div class="prtit">Natural Fabrics</div><p class="prdesc">We source only the finest handwoven cotton, silk, and chanderi from certified sustainable cooperatives across Bihar.</p></div>
+      <div class="prst"><div class="prnum">02</div><span class="pricon">🎨</span><div class="prtit">Artisan's Hand</div><p class="prdesc">Each motif — fish, lotus, sun, peacock — is sketched freehand using traditional bamboo pens and natural pigments.</p></div>
+      <div class="prst"><div class="prnum">03</div><span class="pricon">✨</span><div class="prtit">Quality Finishing</div><p class="prdesc">Every garment undergoes rigorous quality checks and natural washing to ensure the art lasts a lifetime on your fabric.</p></div>
+      <div class="prst"><div class="prnum">04</div><span class="pricon">📦</span><div class="prtit">Conscious Delivery</div><p class="prdesc">Packaged in recycled cloth bags with a handwritten note from the artisan — art you can trace back to its creator.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- DRESSES -->
+<div class="sw sw-w reveal">
+  <div class="sm">
+    <div class="sh">
+      <div><div class="ssub">Modern Mithila</div><h2 class="stit">Contemporary <em>Dresses</em></h2></div>
+      <a href="#" class="slink">View All Dresses</a>
+    </div>
+    <div class="pg">
+
+      <!-- Krishna Mor Paankh Tussar Kurta -->
+      <div class="pc">
+        <div class="pi">
+          <img src="https://www.madhubanipaints.com/cdn/shop/files/InShot_20230814_135824417_copy_2457x3276_e8f4202c-58ff-4c37-98ca-195a9f155ccb_533x.jpg?v=1692008408"
+            alt="Krishna Mor Paankh Madhubani Tussar Silk Kurta"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=480&q=80'">
+          <div class="ptw"><span class="pt ptn">New Arrival</span></div>
+          <button class="pw">♡</button><div class="pq">Quick View</div>
+        </div>
+        <div class="pinfo">
+          <div class="pcr">Tussar Silk · Peacock Art</div>
+          <div class="pna">Krishna Mor Paankh Dress</div>
+          <div class="pmt">Handpainted Tussar Silk</div>
+          <div class="ppr"><span class="pcu">₹5,800</span></div>
+        </div>
+      </div>
+
+      <!-- Phool Bharni back -->
+      <div class="pc">
+        <div class="pi">
+          <img src="https://www.madhubanipaints.com/cdn/shop/files/rn-image_picker_lib_temp_30e7f072-d0fb-4481-abb1-960db0692a5b_533x.jpg?v=1695177288"
+            alt="Black Phool Bharni Dress back view"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=480&q=80'">
+          <div class="ptw"><span class="pt ptb">Artisan Pick</span></div>
+          <button class="pw">♡</button><div class="pq">Quick View</div>
+        </div>
+        <div class="pinfo">
+          <div class="pcr">Tussar Silk · Floral</div>
+          <div class="pna">Phool Bharni Dress</div>
+          <div class="pmt">Handpainted Tussar Silk</div>
+          <div class="ppr"><span class="pcu">₹10,500</span></div>
+        </div>
+      </div>
+
+      <!-- Gajanand Mayur 2nd angle -->
+      <div class="pc">
+        <div class="pi">
+          <img src="https://www.madhubanipaints.com/cdn/shop/products/MPOKH0000079_2_533x.jpg?v=1679150206"
+            alt="Gajanand Mayur Tussar Silk dress angle"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=480&q=80'">
+          <div class="ptw"><span class="pt ptb">Bestseller</span></div>
+          <button class="pw">♡</button><div class="pq">Quick View</div>
+        </div>
+        <div class="pinfo">
+          <div class="pcr">Silk · Madhubani Motif</div>
+          <div class="pna">Ganesha Garden Dress</div>
+          <div class="pmt">Tussar Silk · Handpainted</div>
+          <div class="ppr"><span class="pcu">₹7,300</span></div>
+        </div>
+      </div>
+
+      <!-- RAMAYANAM detail -->
+      <div class="pc">
+        <div class="pi">
+          <img src="https://www.madhubanipaints.com/cdn/shop/products/InShot_20230102_145026552_copy_1024x1536_0be0b615-462e-4be4-8f7b-64a1a8e2211c_533x.jpg?v=1679148267"
+            alt="RAMAYANAM Saree detail art"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1609237723095-7e5d62ee0be9?w=480&q=80'">
+          <div class="ptw"><span class="pt pts">Sale</span></div>
+          <button class="pw">♡</button><div class="pq">Quick View</div>
+        </div>
+        <div class="pinfo">
+          <div class="pcr">Tussar Silk · Heritage</div>
+          <div class="pna">Sita's Garden Dress</div>
+          <div class="pmt">Handpainted Tussar Silk</div>
+          <div class="ppr"><span class="pcu">₹12,500</span><span class="pol">₹14,900</span><span class="pof">−16%</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="sw sw-c reveal">
+  <div class="sm">
+    <div class="ssub">What Our Customers Say</div>
+    <h2 class="stit">Worn with <em>Love</em></h2>
+    <div class="tg">
+      <div class="tc">
+        <div class="tst">★★★★★</div>
+        <p class="ttxt">"The RAMAYANAM saree I ordered was the most beautiful piece of art I've ever worn. The detail of Lord Ram, Sita and Hanuman painted so lovingly — I wore it at my daughter's wedding and was moved to tears."</p>
+        <div class="tau"><div class="tav" style="background:var(--terra);">P</div><div><div class="tna">Priya Sharma</div><div class="tlo">Mumbai, India</div></div></div>
+      </div>
+      <div class="tc">
+        <div class="tst">★★★★★</div>
+        <p class="ttxt">"I wore the Black Phool Bharni Kurti set to a gallery opening in London and received compliments all evening. People asked if it was a wearable painting — it truly is."</p>
+        <div class="tau"><div class="tav" style="background:var(--indigo);">A</div><div><div class="tna">Ananya Bose</div><div class="tlo">London, UK</div></div></div>
+      </div>
+      <div class="tc">
+        <div class="tst">★★★★★</div>
+        <p class="ttxt">"Knowing my purchase supports women artisans in Madhubani makes every wear so meaningful. The SOBHAN Chanderi saree is exquisite — the motifs are breathtaking."</p>
+        <div class="tau"><div class="tav" style="background:var(--mustard);color:var(--dark);">R</div><div><div class="tna">Rekha Gupta</div><div class="tlo">Delhi, India</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INSTAGRAM GRID -->
+<div class="sw sw-o reveal">
+  <div class="sm">
+    <div style="text-align:center;margin-bottom:5px;">
+      <div class="ssub" style="display:flex;justify-content:center;">Follow Our World</div>
+      <h2 class="stit" style="text-align:center;margin-bottom:5px;">@MithilaDesign on <em>Instagram</em></h2>
+      <p style="font-size:13px;color:var(--light);">Tag your look with <strong>#MithilaDesign</strong> to be featured</p>
+    </div>
+    <div class="igrid">
+      <div class="iitem">
+        <img src="https://www.madhubanipaints.com/cdn/shop/files/photo-output78_copy_3000x4500_f359833d-b3c4-4f68-a478-8080dcbe304e_533x.jpg?v=1691843764" alt="Mithila art saree"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400&q=80'">
+        <div class="iov">📷</div>
+      </div>
+      <div class="iitem">
+        <img src="https://www.madhubanipaints.com/cdn/shop/products/MPOKH0000079_1_533x.jpg?v=1679150206" alt="Madhubani kurti"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400&q=80'">
+        <div class="iov">📷</div>
+      </div>
+      <div class="iitem">
+        <img src="https://www.madhubanipaints.com/cdn/shop/products/InShot_20230102_145110733_copy_1024x1536_28e6d712-04ad-4102-91b2-ed3363a32467_533x.jpg?v=1679148267" alt="Ramayanam saree"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=400&q=80'">
+        <div class="iov">📷</div>
+      </div>
+      <div class="iitem">
+        <img src="https://www.madhubanipaints.com/cdn/shop/files/rn-image_picker_lib_temp_d0a0cc0c-1788-4dd7-9359-12728b40f8d4_533x.jpg?v=1695177289" alt="Black phool bharni kurti"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1609237723095-7e5d62ee0be9?w=400&q=80'">
+        <div class="iov">📷</div>
+      </div>
+      <div class="iitem">
+        <img src="https://www.madhubanipaints.com/cdn/shop/files/InShot_20230814_135824417_copy_2457x3276_e8f4202c-58ff-4c37-98ca-195a9f155ccb_533x.jpg?v=1692008408" alt="Krishna peacock kurti"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=400&q=80'">
+        <div class="iov">📷</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWSLETTER -->
+<div class="nl reveal">
+  <div class="nlc">
+    <div class="ssub">Stay Connected</div>
+    <h2 class="stit">Stories, Art &<br><em>Early Access</em></h2>
+    <p class="nld">Join our community of art lovers. Be first to hear about new collections, artisan spotlights, and exclusive offers — delivered with care, never spam.</p>
+  </div>
+  <div class="nlf">
+    <div class="nlq">"Every email is a window into the world of Mithila."<br>
+    <span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--mustard-l);font-family:'Jost',sans-serif;font-weight:600;">— The Mithila Design Team</span></div>
+    <div class="nlr">
+      <input type="email" class="nli" placeholder="Your email address">
+      <button class="nlb">Subscribe</button>
+    </div>
+    <div class="nln">No spam, only art. Unsubscribe anytime.</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ftop">
+    <div>
+      <div class="logo-n" style="color:#fff;font-size:19px;">Mithila Design</div>
+      <div class="logo-s" style="color:var(--terra-l);margin-bottom:2px;">Art in Every Thread</div>
+      <p class="fabt">Celebrating the ancient craft of Mithila Madhubani art through contemporary fashion. Handcrafted in Bihar, worn around the world.</p>
+      <div class="fsoc">
+        <button class="fsb">𝕏</button><button class="fsb">in</button>
+        <button class="fsb">📷</button><button class="fsb">▶</button>
+      </div>
+    </div>
+    <div class="fcol">
+      <h4>Shop</h4>
+      <ul><li><a href="#">Sarees</a></li><li><a href="#">Kurtis & Sets</a></li><li><a href="#">Dresses</a></li><li><a href="#">New Arrivals</a></li><li><a href="#">Bestsellers</a></li><li><a href="#">Gift Cards</a></li></ul>
+    </div>
+    <div class="fcol">
+      <h4>Our World</h4>
+      <ul><li><a href="#">About Mithila Art</a></li><li><a href="#">Meet the Artisans</a></li><li><a href="#">Sustainability</a></li><li><a href="#">Press & Media</a></li><li><a href="#">Blog</a></li></ul>
+    </div>
+    <div class="fcol">
+      <h4>Help</h4>
+      <ul><li><a href="#">Size Guide</a></li><li><a href="#">Shipping & Returns</a></li><li><a href="#">Care Instructions</a></li><li><a href="#">Contact Us</a></li><li><a href="#">Track Order</a></li><li><a href="#">FAQs</a></li></ul>
+    </div>
+  </div>
+  <div class="fbot">
+    <div class="fcp">© 2025 Mithila Design. Made with ♥ in Bihar, India.</div>
+    <div class="fbl"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Accessibility</a></div>
+  </div>
+</footer>
+
+<script>
+  // HERO SLIDER
+  let cur=0;
+  const sl=document.getElementById('hslides');
+  const dots=document.querySelectorAll('.hdot');
+  function goTo(i){cur=(i+3)%3;sl.style.transform=`translateX(-${cur*33.333}%)`;dots.forEach((d,j)=>d.classList.toggle('active',j===cur))}
+  document.getElementById('hnext').onclick=()=>goTo(cur+1);
+  document.getElementById('hprev').onclick=()=>goTo(cur-1);
+  dots.forEach(d=>d.addEventListener('click',()=>goTo(+d.dataset.i)));
+  let auto=setInterval(()=>goTo(cur+1),5500);
+  document.querySelector('.hero').addEventListener('mouseenter',()=>clearInterval(auto));
+  document.querySelector('.hero').addEventListener('mouseleave',()=>{auto=setInterval(()=>goTo(cur+1),5500)});
+
+  // NAV SCROLL
+  window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('up',scrollY>20));
+
+  // SCROLL REVEAL
+  const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}}),{threshold:.09});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  // CATEGORY TABS
+  document.querySelectorAll('.cati').forEach(item=>{item.onclick=()=>{document.querySelectorAll('.cati').forEach(i=>i.classList.remove('active'));item.classList.add('active')}});
+
+  // WISHLIST
+  document.querySelectorAll('.pw').forEach(btn=>{btn.onclick=e=>{e.stopPropagation();btn.textContent=btn.textContent==='♡'?'♥':'♡';btn.style.color=btn.textContent==='♥'?'#B5451B':''}});
+</script>
+</body>
+</html>
