@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mithila Design — Art in Every Thread</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300;1,9..144,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ── TOKENS ── */
+:root {
+  --bg:     #F5F3EE;
+  --white:  #FFFFFF;
+  --ink:    #121212;
+  --mid:    #555550;
+  --muted:  #999992;
+  --terra:  #A0391E;
+  --gold:   #B5841A;
+  --border: #E0DDD6;
+  --bg2:    #EDEBE5;
+  --sand:   #EAE4D8;
+}
+
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'DM Sans',sans-serif; background:var(--white); color:var(--ink); overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+img { display:block; width:100%; height:100%; object-fit:cover; }
+a { text-decoration:none; color:inherit; }
+button { cursor:pointer; border:none; font-family:inherit; background:none; }
+
+::-webkit-scrollbar { width:3px; }
+::-webkit-scrollbar-thumb { background:var(--terra); }
+
+
+/* ══ NAV ══ */
+nav {
+  position:fixed; top:34px; left:0; right:0; z-index:600;
+  height:64px;
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 40px;
+}
+.nav-logo {
+  font-family:'Fraunces',serif;
+  font-size:20px; font-weight:600; color:var(--ink);
+  letter-spacing:-0.01em;
+}
+.nav-logo small {
+  display:block; font-family:'DM Sans',sans-serif;
+  font-size:8.5px; font-weight:400; letter-spacing:0.22em;
+  text-transform:uppercase; color:var(--muted); margin-top:1px;
+}
+.nav-links { display:flex; gap:28px; list-style:none; }
+.nav-links a {
+  font-size:13.5px; color:var(--mid); font-weight:400;
+  transition:color .18s;
+}
+.nav-links a:hover { color:var(--ink); }
+.nav-r { display:flex; align-items:center; gap:2px; }
+.ni { width:40px; height:40px; display:flex; align-items:center; justify-content:center; color:var(--mid); transition:color .18s; }
+.ni:hover { color:var(--ink); }
+.ni svg { width:18px; height:18px; stroke-width:1.5; }
+.nav-cart {
+  margin-left:6px; padding:9px 20px;
+  background:var(--ink); color:#fff;
+  font-size:12px; font-weight:500; letter-spacing:0.07em; text-transform:uppercase;
+  transition:background .2s;
+}
+.nav-cart:hover { background:var(--terra); }
+
+
+/* ══ HERO — split, reduced height ══ */
+.hero {
+  display:grid; grid-template-columns:52% 48%;
+  height:calc(100vh - 98px); max-height:680px; min-height:480px;
+  margin-top:98px;
+}
+.hero-l {
+  position:relative; overflow:hidden;
+  background:var(--sand);
+}
+.hero-l img { height:100%; object-position:center top; transition:transform 7s ease; }
+.hero-l:hover img { transform:scale(1.04); }
+/* thin terracotta stripe on left edge */
+.hero-l::before {
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background:var(--terra); z-index:2;
+}
+.hero-r {
+  display:flex; flex-direction:column; justify-content:center;
+  padding:0 64px 0 56px;
+  background:var(--bg);
+}
+.hero-eyebrow {
+  font-size:10.5px; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--terra); font-weight:500; margin-bottom:20px;
+}
+.hero-h1 {
+  font-family:'Fraunces',serif;
+  font-size:clamp(36px,3.8vw,58px); font-weight:600; line-height:1.1;
+  color:var(--ink); margin-bottom:16px;
+}
+.hero-h1 em { font-style:italic; font-weight:300; color:var(--terra); }
+.hero-p {
+  font-size:14.5px; line-height:1.75; color:var(--mid);
+  max-width:340px; margin-bottom:36px;
+}
+.btn-dk {
+  display:inline-flex; align-items:center; gap:10px;
+  background:var(--ink); color:#fff;
+  padding:14px 32px; font-size:12px; font-weight:500;
+  letter-spacing:0.1em; text-transform:uppercase;
+  transition:background .2s; align-self:flex-start;
+}
+.btn-dk:hover { background:var(--terra); }
+.btn-dk svg { width:13px; height:13px; transition:transform .2s; }
+.btn-dk:hover svg { transform:translateX(4px); }
+
+
+/* ══ MARQUEE SHIPPING BAR ══ */
+.ship-bar {
+  position:fixed; top:0; left:0; right:0; z-index:700;
+  background:var(--ink);
+  height:34px; overflow:hidden;
+  display:flex; align-items:center;
+}
+.ship-track {
+  display:flex; width:max-content;
+  animation:shipTicker 28s linear infinite;
+  align-items:center; gap:0;
+}
+@keyframes shipTicker {
+  0%   { transform:translateX(0); }
+  100% { transform:translateX(-50%); }
+}
+.ship-item {
+  white-space:nowrap;
+  font-size:10.5px; font-weight:400; letter-spacing:0.12em;
+  text-transform:uppercase; color:rgba(255,255,255,.75);
+  padding:0 28px; display:flex; align-items:center; gap:8px;
+}
+.ship-item b { color:#fff; font-weight:600; }
+.ship-dot { color:var(--terra); font-size:8px; }
+
+
+/* ══ TRUST STRIP ══ */
+.trust-strip {
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  padding:28px 0;
+}
+.trust-inner {
+  max-width:1300px; margin:0 auto; padding:0 40px;
+  display:flex; align-items:flex-start; justify-content:space-between;
+  gap:16px;
+}
+.trust-item {
+  display:flex; flex-direction:column; align-items:center;
+  gap:10px; flex:1; text-align:center;
+}
+.trust-icon { width:56px; height:56px; flex-shrink:0; }
+.trust-label {
+  font-size:11.5px; font-weight:400; color:var(--terra);
+  line-height:1.4; letter-spacing:0.01em;
+}
+
+
+
+/* ══ SHARED ══ */
+.sec { padding:72px 0; }
+.sec-sm { padding:52px 0; }
+.wrap { max-width:1300px; margin:0 auto; padding:0 40px; }
+.sec-top {
+  display:flex; align-items:flex-end; justify-content:space-between;
+  margin-bottom:36px;
+}
+.sec-top-l { display:flex; flex-direction:column; }
+.eyebrow {
+  font-size:10px; letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--terra); font-weight:500; margin-bottom:8px;
+}
+.h2 {
+  font-family:'Fraunces',serif;
+  font-size:clamp(24px,2.4vw,36px); font-weight:600; line-height:1.15;
+  color:var(--ink);
+}
+.h2 em { font-style:italic; font-weight:300; }
+.view-all {
+  font-size:12px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--ink); border-bottom:1px solid var(--ink); padding-bottom:2px;
+  transition:color .18s, border-color .18s;
+}
+.view-all:hover { color:var(--terra); border-color:var(--terra); }
+
+
+/* ══ SHOP BY CATEGORY — 4 equal tiles ══ */
+.categories { background:var(--white); padding:64px 0 0; }
+.cat-row {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:8px;
+}
+.cat-tile {
+  position:relative; overflow:hidden; cursor:pointer;
+  aspect-ratio:3/4;
+  background:var(--bg2);
+}
+.cat-tile img { transition:transform .65s cubic-bezier(.25,.46,.45,.94); }
+.cat-tile:hover img { transform:scale(1.05); }
+.cat-tile-ov {
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(18,18,18,.62) 0%, transparent 52%);
+}
+.cat-tile-info { position:absolute; bottom:0; left:0; right:0; padding:22px 18px; }
+.cat-tile-name {
+  font-family:'Fraunces',serif; font-size:19px; font-weight:600; color:#fff;
+  margin-bottom:4px;
+}
+.cat-tile-sub {
+  font-size:10.5px; letter-spacing:0.12em; text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+}
+.cat-tile-link {
+  display:inline-block; margin-top:10px;
+  font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase;
+  color:rgba(255,255,255,.8); border-bottom:1px solid rgba(255,255,255,.35);
+  padding-bottom:1px; opacity:0; transform:translateY(6px);
+  transition:opacity .28s, transform .28s;
+}
+.cat-tile:hover .cat-tile-link { opacity:1; transform:translateY(0); }
+
+
+/* ══ FEATURED COLLECTION — full-width editorial banner ══ */
+.feat-banner {
+  margin-top:8px;
+  display:grid; grid-template-columns:1fr 1fr;
+  min-height:420px;
+}
+.feat-img { overflow:hidden; background:var(--bg2); }
+.feat-img img { height:100%; transition:transform 7s ease; }
+.feat-img:hover img { transform:scale(1.03); }
+.feat-text {
+  background:var(--sand);
+  display:flex; flex-direction:column; justify-content:center;
+  padding:64px 56px;
+}
+.feat-eyebrow { font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:var(--terra); font-weight:500; margin-bottom:14px; }
+.feat-h2 {
+  font-family:'Fraunces',serif; font-size:clamp(28px,3vw,44px);
+  font-weight:600; line-height:1.1; color:var(--ink); margin-bottom:16px;
+}
+.feat-h2 em { font-style:italic; font-weight:300; }
+.feat-p { font-size:14px; line-height:1.78; color:var(--mid); margin-bottom:32px; max-width:360px; }
+.btn-outline {
+  display:inline-flex; align-items:center; gap:10px;
+  border:1px solid var(--ink); color:var(--ink);
+  padding:13px 28px; font-size:12px; font-weight:500;
+  letter-spacing:0.1em; text-transform:uppercase;
+  transition:all .22s; align-self:flex-start;
+}
+.btn-outline:hover { background:var(--ink); color:#fff; }
+
+
+/* ══ BEST SELLERS / NEW ARRIVALS — 4 col product grid ══ */
+.products { background:var(--white); }
+.prod-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+.prod-card { cursor:pointer; }
+.prod-thumb {
+  position:relative; overflow:hidden; background:var(--bg2);
+  aspect-ratio:3/4; margin-bottom:14px;
+}
+.prod-thumb img { transition:transform .6s ease; }
+.prod-card:hover .prod-thumb img { transform:scale(1.04); }
+.prod-tag {
+  position:absolute; top:12px; left:12px;
+  font-size:9px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+  padding:3px 9px;
+}
+.tag-new { background:var(--ink); color:#fff; }
+.tag-sale { background:var(--terra); color:#fff; }
+.tag-hrt { background:var(--gold); color:#fff; }
+.prod-wish {
+  position:absolute; top:10px; right:10px;
+  width:32px; height:32px; background:#fff; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; opacity:0; transition:opacity .22s;
+}
+.prod-card:hover .prod-wish { opacity:1; }
+.prod-craft {
+  font-size:9.5px; letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--muted); margin-bottom:4px;
+}
+.prod-name {
+  font-family:'Fraunces',serif; font-size:15.5px; font-weight:600;
+  color:var(--ink); line-height:1.3; margin-bottom:3px;
+}
+.prod-fabric { font-size:12px; color:var(--muted); margin-bottom:8px; }
+.prod-price { display:flex; align-items:center; gap:8px; }
+.price { font-family:'Fraunces',serif; font-size:16px; font-weight:600; color:var(--ink); }
+.price-was { font-size:12.5px; color:var(--muted); text-decoration:line-through; }
+.price-off { font-size:10px; font-weight:600; color:var(--terra); }
+
+
+/* ══ IMPACT STRIP — our numbers ══ */
+.impact {
+  background:var(--sand);
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  padding:0;
+}
+.impact-inner {
+  display:grid; grid-template-columns:repeat(4,1fr);
+}
+.impact-stat {
+  padding:40px 32px;
+  border-right:1px solid var(--border);
+  text-align:center;
+}
+.impact-stat:last-child { border-right:none; }
+.impact-n {
+  font-family:'Fraunces',serif; font-size:38px; font-weight:600;
+  color:var(--ink); line-height:1; margin-bottom:8px;
+}
+.impact-l {
+  font-size:10px; letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--muted);
+}
+
+
+/* ══ OUR STORY — image left, text right ══ */
+.story {
+  display:grid; grid-template-columns:1fr 1fr;
+  background:var(--white);
+}
+.story-img { overflow:hidden; background:var(--bg2); }
+.story-img img { width:100%; height:100%; object-fit:cover; transition:transform 7s ease; }
+.story-img:hover img { transform:scale(1.03); }
+.story-body {
+  display:flex; flex-direction:column; justify-content:center;
+  padding:44px 52px;
+}
+.story-eyebrow { font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:var(--terra); font-weight:500; margin-bottom:14px; }
+.story-h2 {
+  font-family:'Fraunces',serif; font-size:clamp(26px,2.8vw,40px);
+  font-weight:600; line-height:1.12; color:var(--ink); margin-bottom:18px;
+}
+.story-h2 em { font-style:italic; font-weight:300; }
+.story-p { font-size:14px; line-height:1.82; color:var(--mid); margin-bottom:12px; }
+.story-rule { height:1px; background:var(--border); margin:24px 0; }
+.story-list { list-style:none; margin-bottom:32px; }
+.story-list li {
+  font-size:13.5px; color:var(--mid); padding:9px 0;
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; gap:10px;
+}
+.story-list li:first-child { border-top:1px solid var(--border); }
+.story-list li::before { content:'→'; color:var(--terra); font-size:13px; }
+
+
+/* ══ MOTIFS — 5-col horizontal ══ */
+.motifs { background:var(--bg); }
+.motif-row { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-top:36px; }
+.motif-card {
+  background:var(--white); padding:32px 16px 24px;
+  text-align:center; border:1px solid transparent;
+  cursor:pointer; transition:all .28s;
+}
+.motif-card:hover { border-color:var(--border); transform:translateY(-3px); box-shadow:0 8px 28px rgba(18,18,18,.06); }
+.motif-svg { width:56px; height:56px; margin:0 auto 14px; }
+.motif-name { font-family:'Fraunces',serif; font-size:15px; font-style:italic; font-weight:600; color:var(--ink); margin-bottom:3px; }
+.motif-dv { font-size:9.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--terra); margin-bottom:8px; }
+.motif-p { font-size:11.5px; line-height:1.6; color:var(--muted); }
+
+
+/* ══ LOOKBOOK — 3-col editorial (image + caption) ══ */
+.lookbook { background:var(--white); padding:72px 0 0; }
+.lookbook-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:8px; margin-top:36px; }
+.lb-item { position:relative; overflow:hidden; cursor:pointer; background:var(--bg2); }
+.lb-item.tall { aspect-ratio:4/5; }
+.lb-item.sq { aspect-ratio:1/1; }
+.lb-item img { transition:transform .65s ease; }
+.lb-item:hover img { transform:scale(1.05); }
+.lb-cap {
+  position:absolute; bottom:0; left:0; right:0;
+  background:linear-gradient(to top, rgba(18,18,18,.6) 0%, transparent 55%);
+  padding:20px 18px;
+}
+.lb-cap-tag { font-size:9.5px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,.65); margin-bottom:4px; }
+.lb-cap-name { font-family:'Fraunces',serif; font-size:17px; font-weight:600; color:#fff; }
+.lb-cap-price { font-size:14px; color:rgba(255,255,255,.8); margin-top:2px; }
+.lb-view {
+  opacity:0; transform:translateY(5px); transition:opacity .28s, transform .28s;
+  font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
+  color:rgba(255,255,255,.85); border-bottom:1px solid rgba(255,255,255,.4);
+  display:inline-block; margin-top:8px; padding-bottom:1px;
+}
+.lb-item:hover .lb-view { opacity:1; transform:translateY(0); }
+/* Right stack */
+.lb-stack { display:flex; flex-direction:column; gap:8px; }
+.lb-stack .lb-item.sq { flex:1; }
+
+
+
+/* ══ UNDER-PRICE BAND ══ */
+.price-band {
+  background:var(--sand);
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  padding:52px 0;
+}
+
+/* ══ SAREE SHOWCASE — 3 large + scrollable ══ */
+.saree-showcase { background:var(--bg); }
+.saree-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:36px; }
+.saree-card { cursor:pointer; }
+.saree-thumb {
+  position:relative; overflow:hidden; background:var(--bg2);
+  aspect-ratio:2/3; margin-bottom:14px;
+}
+.saree-thumb img { transition:transform .6s ease; }
+.saree-card:hover .saree-thumb img { transform:scale(1.04); }
+.saree-badge {
+  position:absolute; bottom:14px; left:0; right:0;
+  text-align:center;
+  opacity:0; transform:translateY(8px); transition:opacity .28s, transform .28s;
+}
+.saree-card:hover .saree-badge { opacity:1; transform:translateY(0); }
+.saree-badge-inner {
+  display:inline-block;
+  background:rgba(18,18,18,.85); color:#fff;
+  font-size:10px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase;
+  padding:8px 20px;
+}
+
+/* ══ NEWSLETTER — full-width dark ══ */
+.nl {
+  background:var(--ink);
+  padding:80px 40px; text-align:center;
+}
+.nl-inner { max-width:520px; margin:0 auto; }
+.nl-eyebrow { font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:var(--terra); font-weight:500; margin-bottom:14px; }
+.nl-h2 {
+  font-family:'Fraunces',serif; font-size:clamp(26px,2.8vw,38px);
+  font-weight:600; color:#fff; line-height:1.1; margin-bottom:10px;
+}
+.nl-h2 em { font-style:italic; font-weight:300; color:rgba(255,255,255,.45); }
+.nl-sub { font-size:13.5px; color:rgba(255,255,255,.38); line-height:1.7; margin-bottom:32px; }
+.nl-form { display:flex; }
+.nl-inp {
+  flex:1; padding:14px 18px;
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14);
+  border-right:none; color:#fff;
+  font-family:'DM Sans',sans-serif; font-size:14px; outline:none;
+  transition:border-color .2s;
+}
+.nl-inp:focus { border-color:rgba(255,255,255,.3); }
+.nl-inp::placeholder { color:rgba(255,255,255,.28); }
+.nl-sub-btn {
+  background:var(--terra); color:#fff; padding:14px 24px;
+  font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase;
+  transition:background .2s; flex-shrink:0;
+}
+.nl-sub-btn:hover { background:#bf4830; }
+.nl-note { font-size:11px; color:rgba(255,255,255,.2); margin-top:10px; }
+
+
+/* ══ FOOTER ══ */
+footer {
+  background:var(--bg);
+  border-top:1px solid var(--border);
+  padding:56px 40px 28px;
+}
+.foot-inner { max-width:1300px; margin:0 auto; }
+.foot-top {
+  display:grid; grid-template-columns:1.8fr 1fr 1fr 1fr;
+  gap:48px; padding-bottom:44px; border-bottom:1px solid var(--border);
+}
+.foot-brand-n { font-family:'Fraunces',serif; font-size:17px; font-weight:600; color:var(--ink); margin-bottom:2px; }
+.foot-brand-s { font-size:8.5px; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+.foot-about { font-size:12.5px; line-height:1.75; color:var(--mid); margin-bottom:20px; max-width:270px; }
+.foot-soc { display:flex; gap:7px; }
+.foot-s {
+  width:34px; height:34px; border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px; color:var(--mid); transition:all .18s;
+}
+.foot-s:hover { border-color:var(--ink); color:var(--ink); }
+.foot-col h4 {
+  font-size:10px; letter-spacing:0.16em; text-transform:uppercase;
+  font-weight:600; color:var(--ink); margin-bottom:18px;
+}
+.foot-col ul { list-style:none; }
+.foot-col li { margin-bottom:9px; }
+.foot-col a { font-size:12.5px; color:var(--mid); transition:color .18s; }
+.foot-col a:hover { color:var(--ink); }
+.foot-bot {
+  display:flex; align-items:center; justify-content:space-between;
+  padding-top:24px;
+}
+.foot-copy { font-size:11.5px; color:var(--muted); }
+.foot-links { display:flex; gap:20px; }
+.foot-links a { font-size:11.5px; color:var(--muted); transition:color .18s; }
+.foot-links a:hover { color:var(--mid); }
+
+
+/* ══ REVEAL ══ */
+.rv { opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+.rv.on { opacity:1; transform:translateY(0); }
+.rv.rl { transform:translateX(-18px); } .rv.rl.on { transform:translateX(0); }
+.rv.rr { transform:translateX(18px); } .rv.rr.on { transform:translateX(0); }
+.d1{transition-delay:.08s} .d2{transition-delay:.16s} .d3{transition-delay:.24s} .d4{transition-delay:.32s}
+
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1024px){
+  nav { padding:0 20px; }
+  .nav-links { display:none; }
+  .hero { grid-template-columns:1fr; max-height:none; }
+  .hero-l { min-height:52vw; }
+  .hero-r { padding:48px 28px; }
+  nav { top:34px; }
+  .trust-inner { flex-wrap:wrap; justify-content:center; gap:24px; }
+  .trust-item { flex:0 0 calc(33% - 16px); }
+  .cat-row { grid-template-columns:1fr 1fr; }
+  .feat-banner { grid-template-columns:1fr; }
+  .prod-grid { grid-template-columns:1fr 1fr; }
+  .impact-inner { grid-template-columns:1fr 1fr; }
+  .impact-stat:nth-child(2) { border-right:none; }
+  .story { grid-template-columns:1fr; }
+  .story-img { min-height:60vw; }
+  .motif-row { grid-template-columns:repeat(3,1fr); }
+  .lookbook-grid { grid-template-columns:1fr 1fr; }
+  .saree-grid { grid-template-columns:1fr 1fr; }
+  .foot-top { grid-template-columns:1fr 1fr; gap:28px; }
+  .foot-bot { flex-direction:column; gap:10px; text-align:center; }
+  .wrap { padding:0 20px; }
+  footer { padding:44px 20px 20px; }
+  .nl { padding:60px 20px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══ SHIPPING MARQUEE ══ -->
+<div class="ship-bar">
+  <div class="ship-track">
+    <span class="ship-item"><b>Free Shipping</b> on orders above ₹2,500</span>
+    <span class="ship-dot">◆</span>
+    <span class="ship-item">Code <b>MITHILA10</b> — 10% off your first order</span>
+    <span class="ship-dot">◆</span>
+    <span class="ship-item"><b>New:</b> Monsoon Mithila 2025 Collection</span>
+    <span class="ship-dot">◆</span>
+    <span class="ship-item">200+ Women Artisans · Madhubani, Bihar</span>
+    <span class="ship-dot">◆</span>
+    <span class="ship-item">Easy 15-Day Returns &amp; Exchanges</span>
+    <span class="ship-dot">◆</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ship-item"><b>Free Shipping</b> on orders above ₹2,500</span>
+    <span class="ship-dot">◆</span>
+    <span class="ship-item">Code <b>MITHILA10</b> — 10% off your first order</span>
+    <span class="ship-dot">◆</span>
+    <span class="ship-item"><b>New:</b> Monsoon Mithila 2025 Collection</span>
+    <span class="ship-dot">◆</span>
+    <span class="ship-item">200+ Women Artisans · Madhubani, Bihar</span>
+    <span class="ship-dot">◆</span>
+    <span class="ship-item">Easy 15-Day Returns &amp; Exchanges</span>
+    <span class="ship-dot">◆</span>
+  </div>
+</div>
+
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="#" class="nav-logo">
+    Mithila Design
+    <small>Madhubani · Bihar · India</small>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#">Sarees</a></li>
+    <li><a href="#">Kurtis</a></li>
+    <li><a href="#">Dresses</a></li>
+    <li><a href="#">Collections</a></li>
+    <li><a href="#">Our Story</a></li>
+  </ul>
+
+  <div class="nav-r">
+    <button class="ni" aria-label="Search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+    </button>
+    <button class="ni" aria-label="Account">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </button>
+    <button class="ni" aria-label="Wishlist">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </button>
+    <a href="#" class="nav-cart">Bag (0)</a>
+  </div>
+</nav>
+
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-l rv rl">
+    <img
+      src="https://www.madhubanipaints.com/cdn/shop/files/photo-output78_copy_3000x4500_f359833d-b3c4-4f68-a478-8080dcbe304e_1500x.jpg?v=1691843764"
+      alt="SOBHAN Chanderi Saree"
+      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=900&q=90'">
+  </div>
+  <div class="hero-r rv rr">
+    <div class="hero-eyebrow">Monsoon Collection · 2025</div>
+    <h1 class="hero-h1">Ancient Art,<br><em>Worn Today</em></h1>
+    <p class="hero-p">Handpainted by master artisans of Madhubani — 2,500 years of Mithila tradition, worn by the world.</p>
+    <a href="#" class="btn-dk">
+      Shop Collection
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+
+<!-- ══ TRUST STRIP ══ -->
+<div class="trust-strip">
+  <div class="trust-inner">
+
+    <!-- Women Empowerment -->
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- body / skirt -->
+        <path d="M22 32 Q20 42 18 52 L38 52 Q36 42 34 32 Z" fill="#A0391E" opacity=".18" stroke="#A0391E" stroke-width="1.2"/>
+        <!-- torso -->
+        <rect x="23" y="20" width="10" height="12" rx="2" fill="#A0391E" opacity=".22" stroke="#A0391E" stroke-width="1.2"/>
+        <!-- head -->
+        <circle cx="28" cy="14" r="5.5" fill="none" stroke="#A0391E" stroke-width="1.3"/>
+        <!-- dupatta over shoulder -->
+        <path d="M23 22 Q16 26 18 32" stroke="#A0391E" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        <!-- arms holding item -->
+        <path d="M33 24 Q38 22 38 28" stroke="#A0391E" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        <!-- small pot / craft item in hands -->
+        <ellipse cx="38" cy="30" rx="3.5" ry="4" fill="none" stroke="#A0391E" stroke-width="1.2"/>
+      </svg>
+      <span class="trust-label">Women Empowerment</span>
+    </div>
+
+    <!-- Circular Fashion -->
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- heart outline -->
+        <path d="M28 42 Q14 32 14 22 A8 8 0 0 1 28 18 A8 8 0 0 1 42 22 Q42 32 28 42Z" fill="none" stroke="#A0391E" stroke-width="1.3" opacity=".5"/>
+        <!-- circular arrows inside heart -->
+        <path d="M22 25 A7 7 0 0 1 34 25" stroke="#A0391E" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <path d="M34 31 A7 7 0 0 1 22 31" stroke="#A0391E" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <!-- arrowheads -->
+        <path d="M21 22 L22 25 L25 23" stroke="#A0391E" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M35 34 L34 31 L31 33" stroke="#A0391E" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="trust-label">Circular Fashion</span>
+    </div>
+
+    <!-- Sustainable -->
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- stem -->
+        <line x1="28" y1="48" x2="28" y2="26" stroke="#5A7A4A" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- left leaf -->
+        <path d="M28 36 Q20 30 20 22 Q26 22 28 30" fill="#5A7A4A" opacity=".3" stroke="#5A7A4A" stroke-width="1.2"/>
+        <!-- right leaf -->
+        <path d="M28 30 Q36 24 36 16 Q30 18 28 26" fill="#5A7A4A" opacity=".3" stroke="#5A7A4A" stroke-width="1.2"/>
+        <!-- soil -->
+        <path d="M20 48 Q28 45 36 48" stroke="#5A7A4A" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span class="trust-label">Sustainable</span>
+    </div>
+
+    <!-- Heirloom Crafts -->
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 2×2 cross-stitch grid -->
+        <!-- top-left cross -->
+        <line x1="12" y1="12" x2="22" y2="22" stroke="#1A2B5E" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="22" y1="12" x2="12" y2="22" stroke="#1A2B5E" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- top-right cross -->
+        <line x1="34" y1="12" x2="44" y2="22" stroke="#1A2B5E" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="44" y1="12" x2="34" y2="22" stroke="#1A2B5E" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- bottom-left cross -->
+        <line x1="12" y1="34" x2="22" y2="44" stroke="#1A2B5E" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="22" y1="34" x2="12" y2="44" stroke="#1A2B5E" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- bottom-right cross -->
+        <line x1="34" y1="34" x2="44" y2="44" stroke="#1A2B5E" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="44" y1="34" x2="34" y2="44" stroke="#1A2B5E" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- corner dots -->
+        <circle cx="12" cy="12" r="1.5" fill="#1A2B5E" opacity=".6"/>
+        <circle cx="44" cy="12" r="1.5" fill="#1A2B5E" opacity=".6"/>
+        <circle cx="12" cy="44" r="1.5" fill="#1A2B5E" opacity=".6"/>
+        <circle cx="44" cy="44" r="1.5" fill="#1A2B5E" opacity=".6"/>
+      </svg>
+      <span class="trust-label">Heirloom Crafts</span>
+    </div>
+
+    <!-- Easy Returns -->
+    <div class="trust-item">
+      <svg class="trust-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- box -->
+        <path d="M16 22 L28 16 L40 22 L40 38 L28 44 L16 38 Z" fill="none" stroke="#B5841A" stroke-width="1.3"/>
+        <!-- box mid line -->
+        <line x1="16" y1="22" x2="40" y2="22" stroke="#B5841A" stroke-width="1" opacity=".5"/>
+        <line x1="28" y1="16" x2="28" y2="44" stroke="#B5841A" stroke-width="1" opacity=".4"/>
+        <!-- circular arrow around box -->
+        <path d="M10 28 A18 18 0 1 1 22 8" stroke="#B5841A" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-dasharray="3 2"/>
+        <!-- arrowhead -->
+        <path d="M19 5 L22 8 L18 10" stroke="#B5841A" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="trust-label">Easy Returns</span>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- ══ SHOP BY CATEGORY ══ -->
+<section class="categories rv">
+  <div class="wrap">
+    <div class="sec-top">
+      <div class="sec-top-l">
+        <div class="eyebrow">Shop by Category</div>
+        <h2 class="h2">Find Your <em>Perfect Piece</em></h2>
+      </div>
+    </div>
+  </div>
+  <div class="wrap" style="padding-bottom:0">
+    <div class="cat-row">
+
+      <div class="cat-tile rv d1">
+        <img src="https://www.madhubanipaints.com/cdn/shop/files/photo-output3-1_copy_3000x4500_33b0fb29-1b4c-44ca-9abf-7224214b1f73_1500x.jpg?v=1691840772"
+          alt="Sarees"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1609237723095-7e5d62ee0be9?w=600&q=85'">
+        <div class="cat-tile-ov"></div>
+        <div class="cat-tile-info">
+          <div class="cat-tile-name">Sarees</div>
+          <div class="cat-tile-sub">Chanderi · Tussar · Cotton</div>
+          <div class="cat-tile-link">Shop Now →</div>
+        </div>
+      </div>
+
+      <div class="cat-tile rv d2">
+        <img src="https://www.madhubanipaints.com/cdn/shop/products/MPOKH0000079_1_1500x.jpg?v=1679150206"
+          alt="Kurtis"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=600&q=85'">
+        <div class="cat-tile-ov"></div>
+        <div class="cat-tile-info">
+          <div class="cat-tile-name">Kurtis &amp; Sets</div>
+          <div class="cat-tile-sub">Silk · Cotton · Handloom</div>
+          <div class="cat-tile-link">Shop Now →</div>
+        </div>
+      </div>
+
+      <div class="cat-tile rv d3">
+        <img src="https://www.madhubanipaints.com/cdn/shop/files/InShot_20230814_135824417_copy_2457x3276_e8f4202c-58ff-4c37-98ca-195a9f155ccb_1500x.jpg?v=1692008408"
+          alt="Dresses"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=600&q=85'">
+        <div class="cat-tile-ov"></div>
+        <div class="cat-tile-info">
+          <div class="cat-tile-name">Dresses</div>
+          <div class="cat-tile-sub">Tussar · Cotton · Artisan</div>
+          <div class="cat-tile-link">Shop Now →</div>
+        </div>
+      </div>
+
+      <div class="cat-tile rv d4">
+        <img src="https://www.madhubanipaints.com/cdn/shop/products/InShot_20230102_145110733_copy_1024x1536_28e6d712-04ad-4102-91b2-ed3363a32467_1500x.jpg?v=1679148267"
+          alt="Heritage Collection"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=600&q=85'">
+        <div class="cat-tile-ov"></div>
+        <div class="cat-tile-info">
+          <div class="cat-tile-name">Heritage</div>
+          <div class="cat-tile-sub">Sacred · Limited · Silk</div>
+          <div class="cat-tile-link">Shop Now →</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FEATURED COLLECTION BANNER ══ -->
+<div class="feat-banner rv" style="margin-top:8px">
+  <div class="feat-img">
+    <img
+      src="https://www.madhubanipaints.com/cdn/shop/products/InShot_20230102_145110733_copy_1024x1536_28e6d712-04ad-4102-91b2-ed3363a32467_1500x.jpg?v=1679148267"
+      alt="RAMAYANAM Tussar Saree"
+      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=900&q=85'">
+  </div>
+  <div class="feat-text rv rr">
+    <div class="feat-eyebrow">Heritage Series · Limited Edition</div>
+    <h2 class="feat-h2">The RAMAYANAM<br><em>Tussar Saree</em></h2>
+    <p class="feat-p">An epic painted across the finest Tussar silk. Lord Ram, Sita, and Hanuman — rendered in Madhubani's ancient ink by Bihar's master artisans. A heirloom for generations.</p>
+    <a href="#" class="btn-outline">View Collection →</a>
+  </div>
+</div>
+
+
+<!-- ══ NEW ARRIVALS ══ -->
+<section class="products sec">
+  <div class="wrap">
+    <div class="sec-top rv">
+      <div class="sec-top-l">
+        <div class="eyebrow">New Arrivals</div>
+        <h2 class="h2">The Season's <em>Finest</em></h2>
+      </div>
+      <a href="#" class="view-all">View All →</a>
+    </div>
+
+    <div class="prod-grid">
+
+      <div class="prod-card rv d1">
+        <div class="prod-thumb">
+          <img src="https://www.madhubanipaints.com/cdn/shop/files/photo-output78_copy_3000x4500_f359833d-b3c4-4f68-a478-8080dcbe304e_533x.jpg?v=1691843764"
+            alt="SOBHAN Chanderi Saree"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&q=85'">
+          <div class="prod-tag tag-new">New</div>
+          <button class="prod-wish" aria-label="Wishlist">♡</button>
+        </div>
+        <div class="prod-craft">Chanderi Silk</div>
+        <div class="prod-name">SOBHAN Chanderi Saree</div>
+        <div class="prod-fabric">Handpainted Chanderi</div>
+        <div class="prod-price"><span class="price">₹7,900</span></div>
+      </div>
+
+      <div class="prod-card rv d2">
+        <div class="prod-thumb">
+          <img src="https://www.madhubanipaints.com/cdn/shop/products/MPOKH0000079_1_533x.jpg?v=1679150206"
+            alt="Gajanand Mayur Kurti"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=500&q=85'">
+          <div class="prod-tag tag-new">Artisan Pick</div>
+          <button class="prod-wish" aria-label="Wishlist">♡</button>
+        </div>
+        <div class="prod-craft">Tussar Silk</div>
+        <div class="prod-name">Gajanand Mayur Kurti</div>
+        <div class="prod-fabric">Handpainted Tussar</div>
+        <div class="prod-price"><span class="price">₹7,300</span></div>
+      </div>
+
+      <div class="prod-card rv d3">
+        <div class="prod-thumb">
+          <img src="https://www.madhubanipaints.com/cdn/shop/files/rn-image_picker_lib_temp_d0a0cc0c-1788-4dd7-9359-12728b40f8d4_533x.jpg?v=1695177289"
+            alt="Black Phool Bharni Set"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=500&q=85'">
+          <div class="prod-tag tag-hrt">Heritage</div>
+          <button class="prod-wish" aria-label="Wishlist">♡</button>
+        </div>
+        <div class="prod-craft">Tussar Silk · Set</div>
+        <div class="prod-name">Black Phool Bharni Set</div>
+        <div class="prod-fabric">Handpainted Tussar + Pant</div>
+        <div class="prod-price"><span class="price">₹10,500</span></div>
+      </div>
+
+      <div class="prod-card rv d4">
+        <div class="prod-thumb">
+          <img src="https://www.madhubanipaints.com/cdn/shop/files/InShot_20230814_201753085_copy_2304x3072_55ba2b8c-0324-40c0-8849-3de19c87fa0c_533x.jpg?v=1692024605"
+            alt="Multicolour Fish Kurta"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1609237723095-7e5d62ee0be9?w=500&q=85'">
+          <div class="prod-tag tag-sale">−22%</div>
+          <button class="prod-wish" aria-label="Wishlist">♡</button>
+        </div>
+        <div class="prod-craft">Cotton · Fish Motif</div>
+        <div class="prod-name">Multicolour Fish Kurta</div>
+        <div class="prod-fabric">Handloom Cotton</div>
+        <div class="prod-price">
+          <span class="price">₹2,900</span>
+          <span class="price-was">₹3,700</span>
+          <span class="price-off">−22%</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ IMPACT NUMBERS ══ -->
+<div class="impact rv">
+  <div class="impact-inner">
+    <div class="impact-stat">
+      <div class="impact-n">200+</div>
+      <div class="impact-l">Women Artisans</div>
+    </div>
+    <div class="impact-stat">
+      <div class="impact-n">2,500</div>
+      <div class="impact-l">Years of Heritage</div>
+    </div>
+    <div class="impact-stat">
+      <div class="impact-n">40+</div>
+      <div class="impact-l">Sacred Motifs</div>
+    </div>
+    <div class="impact-stat">
+      <div class="impact-n">100%</div>
+      <div class="impact-l">Handcrafted</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ OUR STORY ══ -->
+<div class="story">
+  <div class="story-img rv rl">
+    <img
+      src="https://www.madhubanipaints.com/cdn/shop/products/InShot_20230102_144608863_copy_1024x1536_d8d0bc30-45dd-4fad-a65b-6c8d8bffb3ad_1500x.jpg?v=1679148267"
+      alt="Artisan handpainting a Mithila saree"
+      onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=85'">
+  </div>
+  <div class="story-body rv rr">
+    <div class="story-eyebrow">Our Heritage</div>
+    <h2 class="story-h2">Born in Madhubani,<br><em>Worn Worldwide</em></h2>
+    <p class="story-p">For over 2,500 years, the women of Mithila have painted walls and sacred surfaces with stories of gods, nature, and love — carried onto silk and cotton worn worldwide.</p>
+    <div class="story-rule"></div>
+    <ul class="story-list">
+      <li>UNESCO-recognized Intangible Cultural Heritage</li>
+      <li>Natural pigments from plants, minerals &amp; earth</li>
+      <li>200+ women artisans partnered directly</li>
+    </ul>
+    <a href="#" class="btn-outline">Read Our Story →</a>
+  </div>
+</div>
+
+
+<!-- ══ SACRED MOTIFS ══ -->
+<section class="motifs sec rv">
+  <div class="wrap">
+    <div class="sec-top">
+      <div class="sec-top-l">
+        <div class="eyebrow">Sacred Symbols</div>
+        <h2 class="h2">The Language of <em>Mithila Art</em></h2>
+      </div>
+      <a href="#" class="view-all">Learn More →</a>
+    </div>
+
+    <div class="motif-row">
+
+      <div class="motif-card">
+        <div class="motif-svg">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+            <circle cx="28" cy="28" r="8" fill="#A0391E" opacity=".38"/>
+            <ellipse cx="28" cy="17" rx="5" ry="10" fill="#A0391E" opacity=".3"/>
+            <ellipse cx="28" cy="17" rx="5" ry="10" transform="rotate(45 28 28)" fill="#B5841A" opacity=".25"/>
+            <ellipse cx="28" cy="17" rx="5" ry="10" transform="rotate(90 28 28)" fill="#A0391E" opacity=".3"/>
+            <ellipse cx="28" cy="17" rx="5" ry="10" transform="rotate(135 28 28)" fill="#B5841A" opacity=".25"/>
+            <ellipse cx="28" cy="17" rx="5" ry="10" transform="rotate(180 28 28)" fill="#A0391E" opacity=".3"/>
+            <ellipse cx="28" cy="17" rx="5" ry="10" transform="rotate(225 28 28)" fill="#B5841A" opacity=".25"/>
+            <ellipse cx="28" cy="17" rx="5" ry="10" transform="rotate(270 28 28)" fill="#A0391E" opacity=".3"/>
+            <ellipse cx="28" cy="17" rx="5" ry="10" transform="rotate(315 28 28)" fill="#B5841A" opacity=".25"/>
+          </svg>
+        </div>
+        <div class="motif-name">Lotus</div>
+        <div class="motif-dv">कमल</div>
+        <div class="motif-p">Purity &amp; awakening. Most sacred motif in Mithila art.</div>
+      </div>
+
+      <div class="motif-card">
+        <div class="motif-svg">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+            <ellipse cx="34" cy="28" rx="17" ry="10" fill="#A0391E" opacity=".35"/>
+            <path d="M17 28L8 22 8 34Z" fill="#A0391E" opacity=".35"/>
+            <circle cx="37" cy="24" r="2.5" fill="#121212" opacity=".25"/>
+          </svg>
+        </div>
+        <div class="motif-name">Fish</div>
+        <div class="motif-dv">मछली</div>
+        <div class="motif-p">Fertility &amp; love. Always painted in pairs.</div>
+      </div>
+
+      <div class="motif-card">
+        <div class="motif-svg">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+            <ellipse cx="34" cy="22" rx="10" ry="7" fill="#1A2B5E" opacity=".4"/>
+            <circle cx="41" cy="19" r="5.5" fill="#1A2B5E" opacity=".45"/>
+            <circle cx="43" cy="18" r="1.8" fill="white" opacity=".6"/>
+            <path d="M28 30Q16 42 12 52" stroke="#A0391E" stroke-width="1.8" fill="none"/>
+            <path d="M30 27Q18 38 14 48" stroke="#B5841A" stroke-width="1.4" fill="none"/>
+            <circle cx="12" cy="52" r="4.5" fill="#B5841A" opacity=".45"/>
+          </svg>
+        </div>
+        <div class="motif-name">Peacock</div>
+        <div class="motif-dv">मोर</div>
+        <div class="motif-p">Beauty &amp; Krishna's grace. A timeless signature.</div>
+      </div>
+
+      <div class="motif-card">
+        <div class="motif-svg">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+            <circle cx="28" cy="28" r="10" fill="#B5841A" opacity=".35"/>
+            <circle cx="28" cy="28" r="5.5" fill="#957010" opacity=".45"/>
+            <line x1="28" y1="6" x2="28" y2="14" stroke="#B5841A" stroke-width="2.5" opacity=".65"/>
+            <line x1="28" y1="42" x2="28" y2="50" stroke="#B5841A" stroke-width="2.5" opacity=".65"/>
+            <line x1="6" y1="28" x2="14" y2="28" stroke="#B5841A" stroke-width="2.5" opacity=".65"/>
+            <line x1="42" y1="28" x2="50" y2="28" stroke="#B5841A" stroke-width="2.5" opacity=".65"/>
+            <line x1="11" y1="11" x2="17" y2="17" stroke="#A0391E" stroke-width="2" opacity=".5"/>
+            <line x1="39" y1="39" x2="45" y2="45" stroke="#A0391E" stroke-width="2" opacity=".5"/>
+            <line x1="45" y1="11" x2="39" y2="17" stroke="#A0391E" stroke-width="2" opacity=".5"/>
+            <line x1="11" y1="45" x2="17" y2="39" stroke="#A0391E" stroke-width="2" opacity=".5"/>
+          </svg>
+        </div>
+        <div class="motif-name">Sun</div>
+        <div class="motif-dv">सूर्य</div>
+        <div class="motif-p">Life-giver. Central to Chhath Puja, Bihar's most sacred ritual.</div>
+      </div>
+
+      <div class="motif-card">
+        <div class="motif-svg">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+            <line x1="28" y1="52" x2="28" y2="15" stroke="#A0391E" stroke-width="2.5" opacity=".55"/>
+            <path d="M28 36Q17 28 12 17" stroke="#A0391E" stroke-width="1.7" fill="none" opacity=".55"/>
+            <path d="M28 41Q40 33 46 22" stroke="#A0391E" stroke-width="1.7" fill="none" opacity=".55"/>
+            <ellipse cx="10" cy="15" rx="6.5" ry="3.5" fill="#B5841A" transform="rotate(-30 10 15)" opacity=".5"/>
+            <ellipse cx="46" cy="20" rx="6.5" ry="3.5" fill="#A0391E" transform="rotate(30 46 20)" opacity=".5"/>
+            <circle cx="28" cy="15" r="5" fill="#B5841A" opacity=".5"/>
+          </svg>
+        </div>
+        <div class="motif-name">Tree of Life</div>
+        <div class="motif-dv">वृक्ष</div>
+        <div class="motif-p">Cosmic bond between earth &amp; heaven. Painted at every wedding.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ LOOKBOOK ══ -->
+<section class="lookbook rv">
+  <div class="wrap">
+    <div class="sec-top">
+      <div class="sec-top-l">
+        <div class="eyebrow">Curated Looks</div>
+        <h2 class="h2">The Mithila <em>Lookbook</em></h2>
+      </div>
+      <a href="#" class="view-all">View All →</a>
+    </div>
+
+    <div class="lookbook-grid">
+      <!-- Large left tile -->
+      <div class="lb-item tall rv d1">
+        <img src="https://www.madhubanipaints.com/cdn/shop/files/photo-output3-1_copy_3000x4500_33b0fb29-1b4c-44ca-9abf-7224214b1f73_1500x.jpg?v=1691840772"
+          alt="GAUNA IN MITHILA Saree"
+          onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1609237723095-7e5d62ee0be9?w=700&q=85'">
+        <div class="lb-cap">
+          <div class="lb-cap-tag">Chanderi Silk · Heritage</div>
+          <div class="lb-cap-name">GAUNA IN MITHILA</div>
+          <div class="lb-cap-price">₹7,900</div>
+          <div class="lb-view">Quick View →</div>
+        </div>
+      </div>
+
+      <!-- Right stack of 2 -->
+      <div class="lb-stack">
+        <div class="lb-item sq rv d2">
+          <img src="https://www.madhubanipaints.com/cdn/shop/products/MPOKH0000079_1_533x.jpg?v=1679150206"
+            alt="Gajanand Mayur Kurti"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=500&q=85'">
+          <div class="lb-cap">
+            <div class="lb-cap-tag">Tussar Silk · Kurti</div>
+            <div class="lb-cap-name">Gajanand Mayur</div>
+            <div class="lb-cap-price">₹7,300</div>
+            <div class="lb-view">Quick View →</div>
+          </div>
+        </div>
+        <div class="lb-item sq rv d3">
+          <img src="https://www.madhubanipaints.com/cdn/shop/files/rn-image_picker_lib_temp_d0a0cc0c-1788-4dd7-9359-12728b40f8d4_533x.jpg?v=1695177289"
+            alt="Black Phool Bharni Set"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=500&q=85'">
+          <div class="lb-cap">
+            <div class="lb-cap-tag">Tussar · Set</div>
+            <div class="lb-cap-name">Phool Bharni Set</div>
+            <div class="lb-cap-price">₹10,500</div>
+            <div class="lb-view">Quick View →</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second right stack -->
+      <div class="lb-stack">
+        <div class="lb-item sq rv d2">
+          <img src="https://www.madhubanipaints.com/cdn/shop/products/MPOKH0000083_1_533x.jpg?v=1679150190"
+            alt="Anuragini Silk Kurti"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=500&q=85'">
+          <div class="lb-cap">
+            <div class="lb-cap-tag">Tussar Silk · Kurti</div>
+            <div class="lb-cap-name">Anuragini Kurti</div>
+            <div class="lb-cap-price">₹7,300</div>
+            <div class="lb-view">Quick View →</div>
+          </div>
+        </div>
+        <div class="lb-item sq rv d3">
+          <img src="https://www.madhubanipaints.com/cdn/shop/products/InShot_20230102_145110733_copy_1024x1536_28e6d712-04ad-4102-91b2-ed3363a32467_533x.jpg?v=1679148267"
+            alt="RAMAYANAM Saree"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=500&q=85'">
+          <div class="lb-cap">
+            <div class="lb-cap-tag">Tussar Silk · Heritage</div>
+            <div class="lb-cap-name">RAMAYANAM Saree</div>
+            <div class="lb-cap-price">₹14,900</div>
+            <div class="lb-view">Quick View →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="height:72px"></div>
+</section>
+
+
+
+<!-- ══ BEST SELLERS ══ -->
+<section class="products sec" style="background:var(--bg)">
+  <div class="wrap">
+    <div class="sec-top rv">
+      <div class="sec-top-l">
+        <div class="eyebrow">Best Sellers</div>
+        <h2 class="h2">Most Loved <em>Pieces</em></h2>
+      </div>
+      <a href="#" class="view-all">View All →</a>
+    </div>
+
+    <div class="prod-grid">
+
+      <div class="prod-card rv d1">
+        <div class="prod-thumb">
+          <img src="https://www.madhubanipaints.com/cdn/shop/products/InShot_20230102_145110733_copy_1024x1536_28e6d712-04ad-4102-91b2-ed3363a32467_533x.jpg?v=1679148267"
+            alt="RAMAYANAM Silk Saree"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=500&q=85'">
+          <div class="prod-tag tag-hrt">Heritage</div>
+          <button class="prod-wish" aria-label="Wishlist">♡</button>
+        </div>
+        <div class="prod-craft">Tussar Silk</div>
+        <div class="prod-name">RAMAYANAM Silk Saree</div>
+        <div class="prod-fabric">Handpainted Tussar Silk</div>
+        <div class="prod-price"><span class="price">₹14,900</span></div>
+      </div>
+
+      <div class="prod-card rv d2">
+        <div class="prod-thumb">
+          <img src="https://www.madhubanipaints.com/cdn/shop/files/photo-output3-1_copy_3000x4500_33b0fb29-1b4c-44ca-9abf-7224214b1f73_533x.jpg?v=1691840772"
+            alt="GAUNA IN MITHILA Saree"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1609237723095-7e5d62ee0be9?w=500&q=85'">
+          <div class="prod-tag tag-new">New</div>
+          <button class="prod-wish" aria-label="Wishlist">♡</button>
+        </div>
+        <div class="prod-craft">Chanderi Silk</div>
+        <div class="prod-name">GAUNA IN MITHILA</div>
+        <div class="prod-fabric">Handpainted Chanderi</div>
+        <div class="prod-price"><span class="price">₹7,900</span></div>
+      </div>
+
+      <div class="prod-card rv d3">
+        <div class="prod-thumb">
+          <img src="https://www.madhubanipaints.com/cdn/shop/products/MPOKH0000083_1_533x.jpg?v=1679150190"
+            alt="Anuragini Silk Kurti"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=500&q=85'">
+          <div class="prod-tag tag-new">Artisan Pick</div>
+          <button class="prod-wish" aria-label="Wishlist">♡</button>
+        </div>
+        <div class="prod-craft">Tussar Silk</div>
+        <div class="prod-name">Anuragini Silk Kurti</div>
+        <div class="prod-fabric">Handpainted Tussar</div>
+        <div class="prod-price"><span class="price">₹7,300</span></div>
+      </div>
+
+      <div class="prod-card rv d4">
+        <div class="prod-thumb">
+          <img src="https://www.madhubanipaints.com/cdn/shop/files/photo-output79_copy_3000x4500_c590d75c-3b05-4678-9591-3f8da7d8a1f8_533x.jpg?v=1691843764"
+            alt="SOBHAN Chanderi Saree"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&q=85'">
+          <div class="prod-tag tag-new">New</div>
+          <button class="prod-wish" aria-label="Wishlist">♡</button>
+        </div>
+        <div class="prod-craft">Chanderi Silk</div>
+        <div class="prod-name">SOBHAN Chanderi — Vol. II</div>
+        <div class="prod-fabric">Handpainted Chanderi</div>
+        <div class="prod-price"><span class="price">₹8,400</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ UNDER ₹5,000 — EVERYDAY COTTON ══ -->
+<section class="saree-showcase sec" style="background:var(--white)">
+  <div class="wrap">
+    <div class="sec-top rv">
+      <div class="sec-top-l">
+        <div class="eyebrow">Everyday Elegance</div>
+        <h2 class="h2">Under <em>₹5,000</em></h2>
+      </div>
+      <a href="#" class="view-all">View All →</a>
+    </div>
+
+    <div class="saree-grid">
+
+      <div class="saree-card rv d1">
+        <div class="saree-thumb">
+          <img src="https://www.madhubanipaints.com/cdn/shop/files/InShot_20230814_201753085_copy_2304x3072_55ba2b8c-0324-40c0-8849-3de19c87fa0c_533x.jpg?v=1692024605"
+            alt="Multicolour Fish Kurta"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1609237723095-7e5d62ee0be9?w=500&q=85'">
+          <div class="prod-tag tag-sale">−22%</div>
+          <button class="prod-wish" aria-label="Wishlist">♡</button>
+          <div class="saree-badge"><span class="saree-badge-inner">Quick View</span></div>
+        </div>
+        <div class="prod-craft">Cotton · Fish Motif</div>
+        <div class="prod-name">Multicolour Fish Kurta</div>
+        <div class="prod-fabric">Handloom Cotton</div>
+        <div class="prod-price">
+          <span class="price">₹2,900</span>
+          <span class="price-was">₹3,700</span>
+          <span class="price-off">−22%</span>
+        </div>
+      </div>
+
+      <div class="saree-card rv d2">
+        <div class="saree-thumb">
+          <img src="https://www.madhubanipaints.com/cdn/shop/files/InShot_20230814_135824417_copy_2457x3276_e8f4202c-58ff-4c37-98ca-195a9f155ccb_533x.jpg?v=1692008408"
+            alt="Krishna Peacock Dress"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=500&q=85'">
+          <div class="prod-tag tag-new">New</div>
+          <button class="prod-wish" aria-label="Wishlist">♡</button>
+          <div class="saree-badge"><span class="saree-badge-inner">Quick View</span></div>
+        </div>
+        <div class="prod-craft">Tussar Silk · Dress</div>
+        <div class="prod-name">Krishna Peacock Dress</div>
+        <div class="prod-fabric">Handpainted Tussar</div>
+        <div class="prod-price"><span class="price">₹4,800</span></div>
+      </div>
+
+      <div class="saree-card rv d3">
+        <div class="saree-thumb">
+          <img src="https://www.madhubanipaints.com/cdn/shop/products/InShot_20230102_102417468_copy_1024x1280_055a92b4-f961-4aa4-ae23-95255da85621_533x.jpg?v=1679148267"
+            alt="Lotus Cotton Kurti"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=500&q=85'">
+          <div class="prod-tag tag-new">Bestseller</div>
+          <button class="prod-wish" aria-label="Wishlist">♡</button>
+          <div class="saree-badge"><span class="saree-badge-inner">Quick View</span></div>
+        </div>
+        <div class="prod-craft">Cotton · Lotus Motif</div>
+        <div class="prod-name">Lotus Motif Cotton Kurti</div>
+        <div class="prod-fabric">Handpainted Handloom</div>
+        <div class="prod-price"><span class="price">₹3,400</span></div>
+      </div>
+
+      <div class="saree-card rv d4">
+        <div class="saree-thumb">
+          <img src="https://www.madhubanipaints.com/cdn/shop/files/InShot_20230814_135824417_copy_2457x3276_e8f4202c-58ff-4c37-98ca-195a9f155ccb_1500x.jpg?v=1692008408"
+            alt="Sun Motif Cotton Dress"
+            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=500&q=85'">
+          <div class="prod-tag tag-sale">−15%</div>
+          <button class="prod-wish" aria-label="Wishlist">♡</button>
+          <div class="saree-badge"><span class="saree-badge-inner">Quick View</span></div>
+        </div>
+        <div class="prod-craft">Cotton · Sun Motif</div>
+        <div class="prod-name">Sun Motif Cotton Dress</div>
+        <div class="prod-fabric">Handloom Cotton</div>
+        <div class="prod-price">
+          <span class="price">₹4,200</span>
+          <span class="price-was">₹4,950</span>
+          <span class="price-off">−15%</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ NEWSLETTER ══ -->
+<div class="nl">
+  <div class="nl-inner">
+    <div class="nl-eyebrow rv">Join Our Community</div>
+    <h2 class="nl-h2 rv">Stories, Art &amp; <em>Early Access</em></h2>
+    <p class="nl-sub rv">12,000+ art lovers receive our artisan stories, collection drops, and exclusive member offers.</p>
+    <div class="nl-form rv">
+      <input type="email" class="nl-inp" placeholder="Your email address">
+      <button class="nl-sub-btn">Subscribe</button>
+    </div>
+    <div class="nl-note rv">No spam. Unsubscribe anytime. · Code MITHILA10 for 10% off your first order.</div>
+  </div>
+</div>
+
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand-n">Mithila Design</div>
+        <div class="foot-brand-s">Art in Every Thread</div>
+        <p class="foot-about">Celebrating the ancient craft of Madhubani art through contemporary fashion. Handcrafted in Bihar, worn around the world.</p>
+        <div class="foot-soc">
+          <a href="#" class="foot-s">𝕏</a>
+          <a href="#" class="foot-s">in</a>
+          <a href="#" class="foot-s">📷</a>
+          <a href="#" class="foot-s">▶</a>
+        </div>
+      </div>
+
+      <div class="foot-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">Sarees</a></li>
+          <li><a href="#">Kurtis &amp; Sets</a></li>
+          <li><a href="#">Dresses</a></li>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Bestsellers</a></li>
+          <li><a href="#">Gift Cards</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Heritage</h4>
+        <ul>
+          <li><a href="#">About Mithila Art</a></li>
+          <li><a href="#">Meet the Artisans</a></li>
+          <li><a href="#">Sacred Motifs</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Shipping &amp; Returns</a></li>
+          <li><a href="#">Care Instructions</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bot">
+      <div class="foot-copy">© 2025 Mithila Design. Made with care in Bihar, India.</div>
+      <div class="foot-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+/* Scroll reveal */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); } });
+}, { threshold: 0.06 });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+/* Wishlist */
+document.querySelectorAll('.prod-wish').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    const h = btn.textContent === '♥';
+    btn.textContent = h ? '♡' : '♥';
+    btn.style.color = h ? '' : '#A0391E';
+  });
+});
+</script>
+
+</body>
+</html>
