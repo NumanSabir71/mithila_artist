@@ -3,29 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop — Mithila Design</title>
+  <title>Our Story — Mithila Design</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,900&family=DM+Sans:wght@400;500;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/site.css">
   <script src="assets/nav.js" defer></script>
   <style>
-    .hub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; padding: 0 40px 72px; }
-    .hub-card {
-      position: relative; aspect-ratio: 4/5; border-radius: 12px; overflow: hidden;
-      border: 1px solid var(--border-subtle); text-decoration: none; color: #fff;
-      display: block; transition: transform 0.25s, box-shadow 0.25s;
-    }
-    .hub-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(26,10,0,0.12); }
-    .hub-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-    .hub-card:hover img { transform: scale(1.04); }
-    .hub-cap {
-      position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,10,0,0.75) 0%, transparent 55%);
-      display: flex; flex-direction: column; justify-content: flex-end; padding: 22px;
-    }
-    .hub-cap span { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.85; margin-bottom: 6px; }
-    .hub-cap h2 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; }
-    @media (max-width: 900px) { .hub-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 520px) { .hub-grid { grid-template-columns: 1fr; } }
+    .story-layout { max-width: 900px; margin: 0 auto; padding: 48px 40px 80px; }
+    .story-layout h1 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.6rem); margin-bottom: 12px; color: var(--ink); }
+    .story-layout h1 em { font-style: italic; font-weight: 300; color: var(--terra); }
+    .story-lead { font-size: 15px; color: var(--muted-text); line-height: 1.85; margin-bottom: 32px; }
+    .story-layout h2 { font-family: var(--font-display); font-size: 1.25rem; margin: 36px 0 14px; color: var(--ink); }
+    .story-layout p { font-size: 14px; line-height: 1.8; color: var(--muted-text); margin-bottom: 16px; }
+    .story-img { border-radius: 12px; overflow: hidden; margin: 32px 0; border: 1px solid var(--border-subtle); }
+    .story-img img { width: 100%; display: block; vertical-align: middle; }
+    .story-list { list-style: none; margin: 24px 0; }
+    .story-list li { padding: 12px 0; border-bottom: 1px solid var(--border-subtle); font-size: 14px; color: var(--muted-text); display: flex; gap: 10px; align-items: flex-start; }
+    .story-list li::before { content: '✦'; color: var(--terra); flex-shrink: 0; }
   </style>
 </head>
 <body>
@@ -118,37 +112,24 @@
 <div class="page-offset">
   <div class="coll-hero">
     <nav class="breadcrumb">
-      <a href="index.html">Home</a><span class="sep">›</span><span>Shop</span>
+      <a href="index.html">Home</a><span class="sep">›</span><span>Our Story</span>
     </nav>
-    <h1 class="coll-title">All <em>Collections</em></h1>
-    <p class="coll-desc">Choose a category to browse pieces with subcategory filters on each collection page.</p>
   </div>
-  <div class="hub-grid">
-    <a href="collection-wall-art.html" class="hub-card rv on">
-      <img src="https://www.madhubanipaints.com/cdn/shop/products/InShot_20230102_144608863_copy_1024x1536_d8d0bc30-45dd-4fad-a65b-6c8d8bffb3ad_533x.jpg?v=1679148267" alt="">
-      <div class="hub-cap"><span>Collection</span><h2>Wall Art</h2></div>
-    </a>
-    <a href="collection-wearable-art.html" class="hub-card rv on">
-      <img src="https://www.madhubanipaints.com/cdn/shop/files/photo-output78_copy_3000x4500_f359833d-b3c4-4f68-a478-8080dcbe304e_533x.jpg?v=1691843764" alt="">
-      <div class="hub-cap"><span>Collection</span><h2>Wearable Art</h2></div>
-    </a>
-    <a href="collection-home-decor.html" class="hub-card rv on">
-      <img src="https://www.madhubanipaints.com/cdn/shop/files/photo-output3-1_copy_3000x4500_33b0fb29-1b4c-44ca-9abf-7224214b1f73_533x.jpg?v=1691840772" alt="">
-      <div class="hub-cap"><span>Collection</span><h2>Home Décor</h2></div>
-    </a>
-    <a href="collection-accessories.html" class="hub-card rv on">
-      <img src="https://www.madhubanipaints.com/cdn/shop/products/MPOKH0000083_1_533x.jpg?v=1679150190" alt="">
-      <div class="hub-cap"><span>Collection</span><h2>Accessories</h2></div>
-    </a>
-    <a href="collection-stationery.html" class="hub-card rv on">
-      <img src="https://www.madhubanipaints.com/cdn/shop/files/InShot_20230814_135824417_copy_2457x3276_e8f4202c-58ff-4c37-98ca-195a9f155ccb_533x.jpg?v=1692008408" alt="">
-      <div class="hub-cap"><span>Collection</span><h2>Stationery</h2></div>
-    </a>
-    <a href="collection-lifestyle-gifts.html" class="hub-card rv on">
-      <img src="https://www.madhubanipaints.com/cdn/shop/files/rn-image_picker_lib_temp_d0a0cc0c-1788-4dd7-9359-12728b40f8d4_533x.jpg?v=1695177289" alt="">
-      <div class="hub-cap"><span>Collection</span><h2>Lifestyle &amp; Gifts</h2></div>
-    </a>
-  </div>
+  <article class="story-layout">
+    <h1>Born in <em>Mithila</em>, shared widely</h1>
+    <p class="story-lead">In Nepal, the living tradition is widely known as <strong>Mithila art</strong>, centred culturally in Janakpur and the Mithila region. Across the border in India, closely related practice is often called <strong>Madhubani painting</strong>, named for Madhubani, Bihar. We honour both names and the artists who keep the vocabulary of line, colour, and story alive.</p>
+    <div class="story-img">
+      <img src="https://www.madhubanipaints.com/cdn/shop/products/InShot_20230102_144608863_copy_1024x1536_d8d0bc30-45dd-4fad-a65b-6c8d8bffb3ad_1500x.jpg?v=1679148267" alt="Mithila painting detail">
+    </div>
+    <p>For generations, artists have painted walls and sacred surfaces with stories of nature, ritual, and devotion — knowledge passed within families and communities. Mithila Design works with makers in <strong>Nepal</strong> and partner ateliers in <strong>Madhubani, Bihar (India)</strong> to bring wall pieces, textiles, and objects to you with clear provenance and care.</p>
+    <h2>What we hold to</h2>
+    <ul class="story-list">
+      <li>Respect for regional names: Mithila art (Nepal) and Madhubani painting (India).</li>
+      <li>Natural pigments and thoughtful finishing wherever possible.</li>
+      <li>Fair, direct relationships with artists and small workshops.</li>
+    </ul>
+    <p><a href="shop.html" class="view-link">Browse collections</a> · <a href="mailto:hello@mithiladesign.com" class="view-link">Contact us</a></p>
+  </article>
 </div>
 
 <footer class="site-footer">

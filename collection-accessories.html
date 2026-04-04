@@ -3,30 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop — Mithila Design</title>
+  <title>Accessories — Mithila Design</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,900&family=DM+Sans:wght@400;500;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/site.css">
   <script src="assets/nav.js" defer></script>
-  <style>
-    .hub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; padding: 0 40px 72px; }
-    .hub-card {
-      position: relative; aspect-ratio: 4/5; border-radius: 12px; overflow: hidden;
-      border: 1px solid var(--border-subtle); text-decoration: none; color: #fff;
-      display: block; transition: transform 0.25s, box-shadow 0.25s;
-    }
-    .hub-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(26,10,0,0.12); }
-    .hub-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-    .hub-card:hover img { transform: scale(1.04); }
-    .hub-cap {
-      position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,10,0,0.75) 0%, transparent 55%);
-      display: flex; flex-direction: column; justify-content: flex-end; padding: 22px;
-    }
-    .hub-cap span { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.85; margin-bottom: 6px; }
-    .hub-cap h2 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; }
-    @media (max-width: 900px) { .hub-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 520px) { .hub-grid { grid-template-columns: 1fr; } }
-  </style>
 </head>
 <body>
 <div class="pat-soft"></div>
@@ -118,36 +99,20 @@
 <div class="page-offset">
   <div class="coll-hero">
     <nav class="breadcrumb">
-      <a href="index.html">Home</a><span class="sep">›</span><span>Shop</span>
+      <a href="index.html">Home</a><span class="sep">›</span>
+      <a href="shop.html">Shop</a><span class="sep">›</span>
+      <span>Accessories</span>
     </nav>
-    <h1 class="coll-title">All <em>Collections</em></h1>
-    <p class="coll-desc">Choose a category to browse pieces with subcategory filters on each collection page.</p>
+    <h1 class="coll-title">Accessories</h1>
+    <p class="coll-desc">Bags, art scarves, and wraps featuring hand-finished Mithila motifs.</p>
   </div>
-  <div class="hub-grid">
-    <a href="collection-wall-art.html" class="hub-card rv on">
-      <img src="https://www.madhubanipaints.com/cdn/shop/products/InShot_20230102_144608863_copy_1024x1536_d8d0bc30-45dd-4fad-a65b-6c8d8bffb3ad_533x.jpg?v=1679148267" alt="">
-      <div class="hub-cap"><span>Collection</span><h2>Wall Art</h2></div>
-    </a>
-    <a href="collection-wearable-art.html" class="hub-card rv on">
-      <img src="https://www.madhubanipaints.com/cdn/shop/files/photo-output78_copy_3000x4500_f359833d-b3c4-4f68-a478-8080dcbe304e_533x.jpg?v=1691843764" alt="">
-      <div class="hub-cap"><span>Collection</span><h2>Wearable Art</h2></div>
-    </a>
-    <a href="collection-home-decor.html" class="hub-card rv on">
-      <img src="https://www.madhubanipaints.com/cdn/shop/files/photo-output3-1_copy_3000x4500_33b0fb29-1b4c-44ca-9abf-7224214b1f73_533x.jpg?v=1691840772" alt="">
-      <div class="hub-cap"><span>Collection</span><h2>Home Décor</h2></div>
-    </a>
-    <a href="collection-accessories.html" class="hub-card rv on">
-      <img src="https://www.madhubanipaints.com/cdn/shop/products/MPOKH0000083_1_533x.jpg?v=1679150190" alt="">
-      <div class="hub-cap"><span>Collection</span><h2>Accessories</h2></div>
-    </a>
-    <a href="collection-stationery.html" class="hub-card rv on">
-      <img src="https://www.madhubanipaints.com/cdn/shop/files/InShot_20230814_135824417_copy_2457x3276_e8f4202c-58ff-4c37-98ca-195a9f155ccb_533x.jpg?v=1692008408" alt="">
-      <div class="hub-cap"><span>Collection</span><h2>Stationery</h2></div>
-    </a>
-    <a href="collection-lifestyle-gifts.html" class="hub-card rv on">
-      <img src="https://www.madhubanipaints.com/cdn/shop/files/rn-image_picker_lib_temp_d0a0cc0c-1788-4dd7-9359-12728b40f8d4_533x.jpg?v=1695177289" alt="">
-      <div class="hub-cap"><span>Collection</span><h2>Lifestyle &amp; Gifts</h2></div>
-    </a>
+
+  <div class="shop-layout">
+    <aside class="filter-panel">
+      <h3>Subcategory</h3>
+      <div class="filter-group" id="filterChips"></div>
+    </aside>
+    <div class="prod-grid-shop" id="productGrid"></div>
   </div>
 </div>
 
@@ -179,5 +144,24 @@
   </div>
 </footer>
 
+<script>
+window.COLLECTION = {
+  filters: [
+    { id: 'all', label: 'All' },
+    { id: 'bags', label: 'Bags & Totes' },
+    { id: 'scarves', label: 'Art Scarves' },
+    { id: 'wraps', label: 'Wraps & Bands' }
+  ],
+  products: [
+    { name: 'Mithila Linen Tote', tag: 'Tote', price: '₹3,200', f: 'bags', img: 'https://www.madhubanipaints.com/cdn/shop/files/InShot_20230814_201753085_copy_2304x3072_55ba2b8c-0324-40c0-8849-3de19c87fa0c_533x.jpg?v=1692024605', fb: 'https://images.unsplash.com/photo-1609237723095-7e5d62ee0be9?w=500&q=80' },
+    { name: 'Peacock Clutch Panel', tag: 'Bag', price: '₹4,500', f: 'bags', img: 'https://www.madhubanipaints.com/cdn/shop/products/MPOKH0000083_1_533x.jpg?v=1679150190', fb: 'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=500&q=80' },
+    { name: 'Tussar Art Scarf', tag: 'Scarf', price: '₹2,600', f: 'scarves', img: 'https://www.madhubanipaints.com/cdn/shop/products/MPOKH0000079_1_533x.jpg?v=1679150206', fb: 'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=500&q=80' },
+    { name: 'Lotus Silk Square', tag: 'Scarf', price: '₹3,100', f: 'scarves', img: 'https://www.madhubanipaints.com/cdn/shop/products/InShot_20230102_102417468_copy_1024x1280_055a92b4-f961-4aa4-ae23-95255da85621_533x.jpg?v=1679148267', fb: 'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=500&q=80' },
+    { name: 'Narrative Wrap Band', tag: 'Wrap', price: '₹1,900', f: 'wraps', img: 'https://www.madhubanipaints.com/cdn/shop/files/photo-output78_copy_3000x4500_f359833d-b3c4-4f68-a478-8080dcbe304e_533x.jpg?v=1691843764', fb: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&q=80' },
+    { name: 'Chanderi Sling Panel', tag: 'Bag', price: '₹5,200', f: 'bags', img: 'https://www.madhubanipaints.com/cdn/shop/files/photo-output3-1_copy_3000x4500_33b0fb29-1b4c-44ca-9abf-7224214b1f73_533x.jpg?v=1691840772', fb: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=500&q=80' }
+  ]
+};
+</script>
+<script src="assets/collection-page.js"></script>
 </body>
 </html>
